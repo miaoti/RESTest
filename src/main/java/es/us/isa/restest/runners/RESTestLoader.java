@@ -361,6 +361,10 @@ public class RESTestLoader {
 		System.setProperty("https.nonProxyHosts", "localhost|127.0.0.1");
 	}
 
+	public OpenAPISpecification getSpec() {
+		return spec;
+	}
+
 	public String getTargetDirJava() {
 		return targetDirJava;
 	}
