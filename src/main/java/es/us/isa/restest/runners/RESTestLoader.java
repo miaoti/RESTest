@@ -4,7 +4,6 @@ import es.us.isa.restest.configuration.pojos.TestConfigurationObject;
 import es.us.isa.restest.coverage.CoverageGatherer;
 import es.us.isa.restest.coverage.CoverageMeter;
 import es.us.isa.restest.generators.*;
-import es.us.isa.restest.main.CreateTestConf;
 import es.us.isa.restest.reporting.AllureReportManager;
 import es.us.isa.restest.reporting.StatsReportManager;
 import es.us.isa.restest.specification.OpenAPISpecification;
@@ -19,7 +18,6 @@ import org.apache.logging.log4j.core.LoggerContext;
 import java.io.File;
 import java.io.PrintStream;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static es.us.isa.restest.configuration.TestConfigurationIO.loadConfiguration;
 import static es.us.isa.restest.util.FileManager.createDir;
@@ -56,6 +54,7 @@ public class RESTestLoader {
 	Boolean checkTestCases;								// If 'true', test cases will be checked with OASValidator before executing them
 	String proxy;										// Proxy to use for all requests in format host:port
 	String host;                            // Configurable host to override spec's
+	String[] headers;                       // Semicolon-delimited headers for requests
 
 	// For Constraint-based testing and AR Testing:
 	Float faultyDependencyRatio; 						// Percentage of faulty test cases due to dependencies to generate.
@@ -139,6 +138,7 @@ public class RESTestLoader {
 		writer.setAPIName(experimentName);
 		writer.setTestId(experimentName);
 		writer.setProxy(proxy);
+		writer.setHeaders(headers);
 		return writer;
 	}
 
@@ -195,22 +195,22 @@ public class RESTestLoader {
 		}
 
 		logger.info("Loading configuration parameter values");
-		
+
 		generator = readProperty("generator");
 		logger.info("Generator: {}", generator);
-		
+
 		OAISpecPath = readProperty("oas.path");
 		logger.info("OAS path: {}", OAISpecPath);
 
 		// Load OAS specification
 		spec = new OpenAPISpecification(OAISpecPath);
-		
+
 		confPath = readProperty("conf.path");
 		logger.info("Test configuration path: {}", confPath);
-		
+
 		targetDirJava = readProperty("test.target.dir");
 		logger.info("Target dir for test classes: {}", targetDirJava);
-		
+
 		experimentName = readProperty("experiment.name");
 		logger.info("Experiment name: {}", experimentName);
 
@@ -238,7 +238,7 @@ public class RESTestLoader {
 				setProxy();
 		}
 		logger.info("Proxy: {}", proxy);
-
+    
 		host = readProperty("host");
 		if (host != null) {
       logger.info("Host: {}", host);
@@ -246,10 +246,16 @@ public class RESTestLoader {
       logger.info("Host: using host/servers from the specification file");
     }
 
+		String headers = readProperty("headers");
+		if (headers != null) {
+			this.headers = headers.split(";");
+		}
+		logger.info("Headers: {}", headers);
+
 		if (readProperty("testcases.check") != null)
 			checkTestCases = Boolean.parseBoolean(readProperty("testcases.check"));
 		logger.info("Check test cases: {}", checkTestCases);
-		
+
 		testClassName = readProperty("testclass.name");
 		logger.info("Test class name: {}", testClassName);
 
@@ -313,14 +319,14 @@ public class RESTestLoader {
 
 	// Read the parameter values from the user property file (if provided). If the value is not found, look for it in the global .properties file (config.properties)
 	public String readProperty(String propertyName) {
-		
+
 		// Read property from user property file (if provided)
 		String value = PropertyManager.readProperty(userPropertiesFilePath, propertyName);
-		
+
 		// If null, read property from global property file (config.properties)
 		if (value ==null)
 			value = PropertyManager.readProperty(propertyName);
-		
+
 		return value;
 	}
 
@@ -363,6 +369,10 @@ public class RESTestLoader {
 		System.setProperty("https.nonProxyHosts", "localhost|127.0.0.1");
 	}
 
+	public OpenAPISpecification getSpec() {
+		return spec;
+	}
+
 	public String getTargetDirJava() {
 		return targetDirJava;
 	}
@@ -392,4 +402,12 @@ public class RESTestLoader {
   public void setHost(String host) {
     this.host = host;
   }
+
+	public String[] getHeaders() {
+		return headers;
+	}
+
+	public void setHeaders(String[] headers) {
+		this.headers = headers;
+	}
 }
