@@ -53,6 +53,7 @@ public class RESTestLoader {
 	String allureReportsPath;							// Path to Allure reports
 	Boolean checkTestCases;								// If 'true', test cases will be checked with OASValidator before executing them
 	String proxy;										// Proxy to use for all requests in format host:port
+	String host;                            // Configurable host to override spec's
 	String[] headers;                       // Semicolon-delimited headers for requests
 
 	// For Constraint-based testing and AR Testing:
@@ -128,7 +129,7 @@ public class RESTestLoader {
 
 	// Create RESTAssured writer
 	public IWriter createWriter() {
-		String basePath = spec.getSpecification().getServers().get(0).getUrl();
+		String basePath = host != null ? host : spec.getSpecification().getServers().get(0).getUrl();
 		RESTAssuredWriter writer = new RESTAssuredWriter(OAISpecPath, confPath, targetDirJava, testClassName, packageName,
 				basePath, logToFile);
 		writer.setAllureReport(allureReports);
@@ -237,6 +238,13 @@ public class RESTestLoader {
 				setProxy();
 		}
 		logger.info("Proxy: {}", proxy);
+    
+		host = readProperty("host");
+		if (host != null) {
+      logger.info("Host: {}", host);
+		} else {
+      logger.info("Host: using host/servers from the specification file");
+    }
 
 		String headers = readProperty("headers");
 		if (headers != null) {
@@ -386,6 +394,14 @@ public class RESTestLoader {
 	public void setTestClassName(String testClassName) {
 		this.testClassName = testClassName;
 	}
+
+  public String getHost() {
+    return host;
+  }
+
+  public void setHost(String host) {
+    this.host = host;
+  }
 
 	public String[] getHeaders() {
 		return headers;
