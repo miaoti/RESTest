@@ -399,19 +399,27 @@ public class TestCase implements Serializable {
 		StringBuilder rowEnding = new StringBuilder();
 		try {
 			for (Map.Entry<String, String> h: headerParameters.entrySet()) {
-				rowEnding.append(encode(h.getKey(), StandardCharsets.UTF_8.toString())).append("=").append(encode(h.getValue(), StandardCharsets.UTF_8.toString())).append(";");
+				String key = h.getKey() != null ? h.getKey() : "";
+				String value = h.getValue() != null ? h.getValue() : "";
+				rowEnding.append(encode(key, StandardCharsets.UTF_8.toString())).append("=").append(encode(value, StandardCharsets.UTF_8.toString())).append(";");
 			}
 			rowEnding.append(",");
 			for (Map.Entry<String, String> p: pathParameters.entrySet()) {
-				rowEnding.append(encode(p.getKey(), StandardCharsets.UTF_8.toString())).append("=").append(encode(p.getValue(), StandardCharsets.UTF_8.toString())).append(";");
+				String key = p.getKey() != null ? p.getKey() : "";
+				String value = p.getValue() != null ? p.getValue() : "";
+				rowEnding.append(encode(key, StandardCharsets.UTF_8.toString())).append("=").append(encode(value, StandardCharsets.UTF_8.toString())).append(";");
 			}
 			rowEnding.append(",");
 			for (Map.Entry<String, String> q: queryParameters.entrySet()) {
-				rowEnding.append(encode(q.getKey(), StandardCharsets.UTF_8.toString())).append("=").append(encode(q.getValue(), StandardCharsets.UTF_8.toString())).append(";");
+				String key = q.getKey() != null ? q.getKey() : "";
+				String value = q.getValue() != null ? q.getValue() : "";
+				rowEnding.append(encode(key, StandardCharsets.UTF_8.toString())).append("=").append(encode(value, StandardCharsets.UTF_8.toString())).append(";");
 			}
 			rowEnding.append(",");
 			for (Map.Entry<String, String> f: formParameters.entrySet()) {
-				rowEnding.append(encode(f.getKey(), StandardCharsets.UTF_8.toString())).append("=").append(encode(f.getValue(), StandardCharsets.UTF_8.toString())).append(";");
+				String key = f.getKey() != null ? f.getKey() : "";
+				String value = f.getValue() != null ? f.getValue() : "";
+				rowEnding.append(encode(key, StandardCharsets.UTF_8.toString())).append("=").append(encode(value, StandardCharsets.UTF_8.toString())).append(";");
 			}
 		} catch (UnsupportedEncodingException e) {
 			rowEnding = new StringBuilder(",,,");
@@ -426,6 +434,11 @@ public class TestCase implements Serializable {
 	
 	
 	public List<String> getValidationErrors(OpenApiInteractionValidator validator) {
+		// If validator is null (e.g., due to spec loading issues), skip validation
+		if (validator == null) {
+			return Collections.emptyList();
+		}
+
 		String fullPath = this.getPath();
 		for (Map.Entry<String, String> pathParam : this.getPathParameters().entrySet())
 			fullPath = fullPath.replace("{" + pathParam.getKey() + "}", pathParam.getValue());

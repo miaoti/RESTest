@@ -11,6 +11,7 @@ import es.us.isa.restest.util.FileManager;
 import es.us.isa.restest.util.JSONManager;
 import es.us.isa.restest.util.RESTestException;
 import es.us.isa.restest.util.SchemaManager;
+import es.us.isa.restest.util.SchemaRefResolver;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.examples.Example;
 import io.swagger.v3.oas.models.media.ArraySchema;
@@ -64,27 +65,32 @@ public class BodyGenerator implements ITestDataGenerator {
         }
 
         ObjectNode dictNode = operationPath != null && FileManager.checkIfExists(jsonPath)? (ObjectNode) JSONManager.readJSON(jsonPath) : objectMapper.createObjectNode();
-        Map.Entry<String, MediaType> mediaTypeEntry = openApiOperation.getRequestBody().getContent().entrySet()
-                .stream().filter(x -> x.getKey().matches(MEDIA_TYPE_APPLICATION_JSON_REGEX)).findFirst().orElse(null);
+        Map.Entry<String, MediaType> mediaTypeEntry = null;
+        if (openApiOperation.getRequestBody() != null && openApiOperation.getRequestBody().getContent() != null) {
+            mediaTypeEntry = openApiOperation.getRequestBody().getContent().entrySet()
+                    .stream().filter(x -> x.getKey().matches(MEDIA_TYPE_APPLICATION_JSON_REGEX)).findFirst().orElse(null);
+        }
         MediaType requestBody = null;
         if (mediaTypeEntry != null)
             requestBody = mediaTypeEntry.getValue();
 
-        if (requestBody != null) {
+        if (requestBody != null && requestBody.getSchema() != null) {
             Schema mutatedSchema = mutate? new SchemaMutation(requestBody.getSchema(), spec.getSpecification()).mutate() : resolveSchema(requestBody.getSchema(), spec.getSpecification());
-            JsonNode rootNode = null;
-            if ("array".equals(mutatedSchema.getType()))
-                rootNode = objectMapper.createArrayNode();
-            else
-                rootNode = objectMapper.createObjectNode();
-            try {
-                generateStatefulObjectNode(dictNode, mutatedSchema, rootNode, "", new ArrayList<>(), true);
-            } catch (RESTestException e) {
-                logger.warn("There isn't enough data to generate a valid request body for {} operation.", operationMethod+operationPath);
-                logger.warn("RESTest will use the default request body specified in the testConf.");
-            }
-            if (rootNode != null) {
-                body = rootNode;
+            if (mutatedSchema != null) {
+                JsonNode rootNode = null;
+                if ("array".equals(mutatedSchema.getType()))
+                    rootNode = objectMapper.createArrayNode();
+                else
+                    rootNode = objectMapper.createObjectNode();
+                try {
+                    generateStatefulObjectNode(dictNode, mutatedSchema, rootNode, "", new ArrayList<>(), true);
+                } catch (RESTestException e) {
+                    logger.warn("There isn't enough data to generate a valid request body for {} operation.", operationMethod+operationPath);
+                    logger.warn("RESTest will use the default request body specified in the testConf.");
+                }
+                if (rootNode != null) {
+                    body = rootNode;
+                }
             }
         }
 
@@ -92,8 +98,21 @@ public class BodyGenerator implements ITestDataGenerator {
     }
 
     private void generateStatefulObjectNode(ObjectNode dictNode, Schema<?> schema, JsonNode rootNode, String prefix, List<String> requiredProperties, boolean firstLevel) throws RESTestException {
+        if (schema == null) {
+            return;
+        }
         if (schema.get$ref() != null) {
-            schema = spec.getSpecification().getComponents().getSchemas().get(schema.get$ref().substring(schema.get$ref().lastIndexOf('/') + 1));
+            // Use SchemaRefResolver to handle api_ prefix mapping with service name
+            String serviceName = SchemaRefResolver.getServiceNameFromOperation(openApiOperation);
+            Schema<?> resolved = SchemaRefResolver.resolveSchemaRef(schema.get$ref(), serviceName, spec.getSpecification());
+            if (resolved != null) {
+                schema = resolved;
+            } else if (spec.getSpecification().getComponents() != null && spec.getSpecification().getComponents().getSchemas() != null) {
+                schema = spec.getSpecification().getComponents().getSchemas().get(schema.get$ref().substring(schema.get$ref().lastIndexOf('/') + 1));
+            }
+            if (schema == null) {
+                return;
+            }
         }
 
         String resolvedProperty = prefix.substring(prefix.lastIndexOf('.') + 1).replace("-duplicated", "").replace(DOT_CONVERSION, ".");
@@ -105,6 +124,7 @@ public class BodyGenerator implements ITestDataGenerator {
             JsonNode childNode = null;
             if (schema.getType() == null) {
                 logger.warn("The schema of {}{} has no type defined. RESTest will use a default value.", operationMethod, operationPath);
+                return;
             }
             if (schema.getType().equals("object")) {
                 childNode = "".equals(prefix) && firstLevel ? rootNode : objectMapper.createObjectNode();
@@ -144,8 +164,11 @@ public class BodyGenerator implements ITestDataGenerator {
 
     private JsonNode createNodeFromExample(Schema<?> schema, String prefix) {
         JsonNode node = objectMapper.getNodeFactory().nullNode();
-        Map.Entry<String, MediaType> mediaTypeEntry = openApiOperation.getRequestBody().getContent().entrySet()
-                .stream().filter(x -> x.getKey().matches(MEDIA_TYPE_APPLICATION_JSON_REGEX)).findFirst().orElse(null);
+        Map.Entry<String, MediaType> mediaTypeEntry = null;
+        if (openApiOperation.getRequestBody() != null && openApiOperation.getRequestBody().getContent() != null) {
+            mediaTypeEntry = openApiOperation.getRequestBody().getContent().entrySet()
+                    .stream().filter(x -> x.getKey().matches(MEDIA_TYPE_APPLICATION_JSON_REGEX)).findFirst().orElse(null);
+        }
         MediaType requestBody = null;
         if (mediaTypeEntry != null)
             requestBody = mediaTypeEntry.getValue();

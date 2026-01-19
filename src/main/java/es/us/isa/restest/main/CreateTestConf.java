@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 public class CreateTestConf {
 
     private static final Logger log = LogManager.getLogger(CreateTestConf.class);
-    private static String openApiSpecPath = "src/test/resources/Folder/openapi.yaml";			                                // OAS file path
-    private static String confPath;																// Test configuration path
+    private static String openApiSpecPath = "src/main/resources/TrainTicket/merged_openapi_spec 1.yaml";			                                // OAS file path
+    private static String confPath = "src/main/resources/TrainTicket/";																// Test configuration path
 
     
     /*

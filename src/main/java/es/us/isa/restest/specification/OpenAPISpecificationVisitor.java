@@ -73,8 +73,9 @@ public class OpenAPISpecificationVisitor {
 
 	private static OpenAPIParameter findBodyParameterFeatures(Operation operation) {
 		OpenAPIParameter param = null;
-		if(operation.getRequestBody().getContent().keySet().stream().anyMatch(x -> x.matches(MEDIA_TYPE_APPLICATION_JSON_REGEX)) ||
-				operation.getRequestBody().getContent().keySet().stream().anyMatch(x -> x.matches(MEDIA_TYPE_TEXT_PLAIN_REGEX))) {
+		if(operation.getRequestBody() != null && operation.getRequestBody().getContent() != null &&
+				(operation.getRequestBody().getContent().keySet().stream().anyMatch(x -> x.matches(MEDIA_TYPE_APPLICATION_JSON_REGEX)) ||
+				operation.getRequestBody().getContent().keySet().stream().anyMatch(x -> x.matches(MEDIA_TYPE_TEXT_PLAIN_REGEX)))) {
 			param = new OpenAPIParameter("body", "body", operation.getRequestBody().getRequired());
 		}
 		return param;
@@ -82,9 +83,15 @@ public class OpenAPISpecificationVisitor {
 
 	private static OpenAPIParameter findFormDataParameterFeatures(Operation operation, String paramName) {
 		OpenAPIParameter param = null;
+		if (operation.getRequestBody() == null || operation.getRequestBody().getContent() == null) {
+			return null;
+		}
 		MediaType mediaType = operation.getRequestBody().getContent().containsKey(MEDIA_TYPE_APPLICATION_X_WWW_FORM_URLENCODED) ?
 				operation.getRequestBody().getContent().get(MEDIA_TYPE_APPLICATION_X_WWW_FORM_URLENCODED) :
 				operation.getRequestBody().getContent().get(MEDIA_TYPE_MULTIPART_FORM_DATA);
+		if (mediaType == null || mediaType.getSchema() == null || mediaType.getSchema().getProperties() == null) {
+			return null;
+		}
 		Iterator<Map.Entry> formDataIterator = mediaType.getSchema().getProperties().entrySet().iterator();
 
 		while (formDataIterator.hasNext()) {

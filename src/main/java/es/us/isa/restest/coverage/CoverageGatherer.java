@@ -186,9 +186,9 @@ public class CoverageGatherer {
             }
         }
 
-        if(requestBody != null && requestBody.getContent().keySet().stream().anyMatch(x -> x.matches(MEDIA_TYPE_APPLICATION_JSON_REGEX))) { //if request body is not null and accepts application/json
+        if(requestBody != null && requestBody.getContent() != null && requestBody.getContent().keySet().stream().anyMatch(x -> x.matches(MEDIA_TYPE_APPLICATION_JSON_REGEX))) { //if request body is not null and accepts application/json
             parametersList.add("body"); //add body parameter
-        } else if(requestBody != null && (requestBody.getContent().containsKey(MEDIA_TYPE_APPLICATION_X_WWW_FORM_URLENCODED) || (requestBody.getContent().containsKey(MEDIA_TYPE_MULTIPART_FORM_DATA)))) {
+        } else if(requestBody != null && requestBody.getContent() != null && (requestBody.getContent().containsKey(MEDIA_TYPE_APPLICATION_X_WWW_FORM_URLENCODED) || (requestBody.getContent().containsKey(MEDIA_TYPE_MULTIPART_FORM_DATA)))) {
 
             MediaType mediaType = requestBody.getContent().containsKey(MEDIA_TYPE_APPLICATION_X_WWW_FORM_URLENCODED) ?
                     requestBody.getContent().get(MEDIA_TYPE_APPLICATION_X_WWW_FORM_URLENCODED) :
@@ -224,7 +224,7 @@ public class CoverageGatherer {
         }
 
         RequestBody requestBody = currentOperationEntry.getValue().getRequestBody();
-        if (requestBody != null && (requestBody.getContent().containsKey(MEDIA_TYPE_APPLICATION_X_WWW_FORM_URLENCODED) || (requestBody.getContent().containsKey(MEDIA_TYPE_MULTIPART_FORM_DATA)))) {
+        if (requestBody != null && requestBody.getContent() != null && (requestBody.getContent().containsKey(MEDIA_TYPE_APPLICATION_X_WWW_FORM_URLENCODED) || (requestBody.getContent().containsKey(MEDIA_TYPE_MULTIPART_FORM_DATA)))) {
             getFormDataParameterValues(criteria, currentPathEntry, currentOperationEntry, requestBody);
         }
     }
@@ -275,7 +275,7 @@ public class CoverageGatherer {
 
     private void getInputContentTypeCoverageCriteria(List<CoverageCriterion> criteria, Entry<String, PathItem> currentPathEntry, Entry<HttpMethod, Operation> currentOperationEntry) {
         RequestBody requestBody = currentOperationEntry.getValue().getRequestBody();
-        List<String> contentTypes = requestBody != null ? new ArrayList<>(requestBody.getContent().keySet()) : null;
+        List<String> contentTypes = (requestBody != null && requestBody.getContent() != null) ? new ArrayList<>(requestBody.getContent().keySet()) : null;
         if (contentTypes != null) { // there could be no 'requestBody' property, so check it before
             criteria.add(createCriterion(new ArrayList<>(contentTypes), INPUT_CONTENT_TYPE, currentPathEntry.getKey() + "->" + currentOperationEntry.getKey().toString()));
         }

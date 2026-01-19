@@ -102,8 +102,12 @@ public class FuzzingTestCaseGenerator extends AbstractTestCaseGenerator {
     }
 
     private void generateFuzzingBody(TestCase tc, TestParameter testParam, Operation testOperation) {
-        Map.Entry<String, MediaType> mediaTypeEntry = testOperation.getOpenApiOperation().getRequestBody().getContent().entrySet()
-                .stream().filter(x -> x.getKey().matches(MEDIA_TYPE_APPLICATION_JSON_REGEX)).findFirst().orElse(null);
+        Map.Entry<String, MediaType> mediaTypeEntry = null;
+        if (testOperation.getOpenApiOperation().getRequestBody() != null && 
+                testOperation.getOpenApiOperation().getRequestBody().getContent() != null) {
+            mediaTypeEntry = testOperation.getOpenApiOperation().getRequestBody().getContent().entrySet()
+                    .stream().filter(x -> x.getKey().matches(MEDIA_TYPE_APPLICATION_JSON_REGEX)).findFirst().orElse(null);
+        }
         MediaType requestBody = null;
         if (mediaTypeEntry != null)
             requestBody = mediaTypeEntry.getValue();

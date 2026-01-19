@@ -55,7 +55,13 @@ public class SchemaManager {
      * without "ref" attributes).
      */
     public static Schema<?> generateFullyResolvedSchema(Schema<?> schema, OpenAPI spec) {
+        if (schema == null) {
+            return null;
+        }
         Schema<?> resolvedSchema = resolveSchemaAndUpdateRefPath(schema, spec);
+        if (resolvedSchema == null) {
+            return null;
+        }
         Schema<?> fullyResolvedSchema;
         if ("array".equals(resolvedSchema.getType()))
             fullyResolvedSchema = generateFullyResolvedArraySchema((ArraySchema) resolvedSchema, spec);
@@ -72,13 +78,21 @@ public class SchemaManager {
     }
 
     public static ArraySchema generateFullyResolvedArraySchema(ArraySchema schema, OpenAPI spec) {
+        if (schema == null) {
+            return null;
+        }
         ArraySchema resolvedSchema = (ArraySchema) resolveSchemaAndUpdateRefPath(schema, spec);
+        if (resolvedSchema == null) {
+            return null;
+        }
         ArraySchema copy = new ArraySchema();
 
         prePopulateSchema(resolvedSchema, copy);
 
-        Schema<?> itemsSchema = generateFullyResolvedSchema(resolvedSchema.getItems(), spec);
-        copy.setItems(itemsSchema);
+        if (resolvedSchema.getItems() != null) {
+            Schema<?> itemsSchema = generateFullyResolvedSchema(resolvedSchema.getItems(), spec);
+            copy.setItems(itemsSchema);
+        }
 
         return copy;
     }
@@ -125,25 +139,59 @@ public class SchemaManager {
      * to the ref attribute.
      */
     public static Schema<?> resolveSchema(Schema<?> schema, OpenAPI spec) {
+        if (schema == null) {
+            return null;
+        }
         Schema resolvedSchema = schema;
-        while (resolvedSchema.get$ref() != null) {
-            resolvedSchema = spec.getComponents().getSchemas().get(resolvedSchema.get$ref().replace("#/components/schemas/", ""));
+        while (resolvedSchema != null && resolvedSchema.get$ref() != null) {
+            String ref = resolvedSchema.get$ref();
+            // Try to resolve using SchemaRefResolver which handles api_ prefix mapping
+            Schema<?> resolved = SchemaRefResolver.resolveSchemaRef(ref, SchemaRefResolver.getCurrentServiceName(), spec);
+            if (resolved != null) {
+                resolvedSchema = resolved;
+            } else if (spec.getComponents() != null && spec.getComponents().getSchemas() != null) {
+                String refName = ref.replace("#/components/schemas/", "");
+                resolvedSchema = spec.getComponents().getSchemas().get(refName);
+            } else {
+                break;
+            }
+            // Prevent infinite loop if resolved schema still has the same ref
+            if (resolvedSchema != null && ref.equals(resolvedSchema.get$ref())) {
+                break;
+            }
         }
         return resolvedSchema;
     }
 
     private static Schema<?> resolveSchemaAndUpdateRefPath(Schema<?> schema, OpenAPI spec) {
+        if (schema == null) {
+            return null;
+        }
         Schema resolvedSchema = schema;
         String schemaSubRef;
-        while (resolvedSchema.get$ref() != null) {
-            schemaSubRef = resolvedSchema.get$ref().replace("#/components/schemas/", "");
+        while (resolvedSchema != null && resolvedSchema.get$ref() != null) {
+            String originalRef = resolvedSchema.get$ref();
+            // Get the resolved schema name using the service-aware resolver
+            schemaSubRef = SchemaRefResolver.getResolvedSchemaName(originalRef, SchemaRefResolver.getCurrentServiceName(), spec);
             if (!Pattern.compile("/" + schemaSubRef + "/|/" + schemaSubRef + "$").matcher(currentRefPath).find()) {
                 currentRefPath += "/" + schemaSubRef;
-                resolvedSchema = spec.getComponents().getSchemas().get(schemaSubRef);
+                // First try to resolve using SchemaRefResolver
+                Schema<?> resolved = SchemaRefResolver.resolveSchemaRef(originalRef, SchemaRefResolver.getCurrentServiceName(), spec);
+                if (resolved != null) {
+                    resolvedSchema = resolved;
+                } else if (spec.getComponents() != null && spec.getComponents().getSchemas() != null) {
+                    resolvedSchema = spec.getComponents().getSchemas().get(schemaSubRef);
+                } else {
+                    break;
+                }
             } else {
                 resolvedSchema.set$ref(null);
                 resolvedSchema.setType("object");
                 resolvedSchema.setProperties(new HashMap<>());
+            }
+            // Prevent infinite loop
+            if (resolvedSchema != null && originalRef.equals(resolvedSchema.get$ref())) {
+                break;
             }
         }
         return resolvedSchema;
@@ -152,7 +200,9 @@ public class SchemaManager {
     public static JsonNode createValueNode(Object value, ObjectMapper mapper) {
         JsonNode node = null;
 
-        if (value instanceof Number) {
+        if (value == null) {
+            node = mapper.getNodeFactory().nullNode();
+        } else if (value instanceof Number) {
             Number n = (Number) value;
 
             if (n instanceof Integer || n instanceof Long) {
@@ -168,8 +218,15 @@ public class SchemaManager {
             node = mapper.getNodeFactory().booleanNode((Boolean) value);
         } else if (value instanceof OffsetDateTime) {
             node = mapper.getNodeFactory().textNode(((OffsetDateTime) value).toString());
-        } else {
+        } else if (value instanceof java.util.Date) {
+            // Handle java.util.Date by converting to ISO-8601 string format
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+            node = mapper.getNodeFactory().textNode(sdf.format((java.util.Date) value));
+        } else if (value instanceof String) {
             node = mapper.getNodeFactory().textNode((String) value);
+        } else {
+            // Fallback: convert any other type to string
+            node = mapper.getNodeFactory().textNode(value.toString());
         }
 
         return node;

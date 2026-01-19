@@ -20,9 +20,14 @@ public abstract class PathRule {
             List<Map.Entry<String, Schema>> objectNodes = new ArrayList<>();
 
             for (Map.Entry<String, Schema> entry : schema.getProperties().entrySet()) {
-                if ("array".equals(entry.getValue().getType())) {
-                    apply(((ArraySchema) entry.getValue()).getItems(), spec);
-                } else if ("object".equals(entry.getValue().getType())) {
+                Schema<?> entrySchema = entry.getValue();
+                // Skip null schema entries
+                if (entrySchema == null) {
+                    continue;
+                }
+                if ("array".equals(entrySchema.getType())) {
+                    apply(((ArraySchema) entrySchema).getItems(), spec);
+                } else if ("object".equals(entrySchema.getType())) {
                     objectNodes.add(entry);
                 }
             }

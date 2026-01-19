@@ -154,15 +154,49 @@ public class AuthManager {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode oauthResponseProperties = objectMapper.readTree(oauthResponse);
-            expiration = nowInSeconds() + oauthResponseProperties.get(expiresInProperty).asLong();
-            oauthHeader = oauthHeaderFormat.replace(
-                    RESPONSE_TOKEN_PROPERTY,
-                    oauthResponseProperties.get(responseTokenProperty).textValue()
-            );
+            
+            // Get expiration - support nested paths with dot notation
+            JsonNode expiresNode = getNestedNode(oauthResponseProperties, expiresInProperty);
+            if (expiresNode != null && !expiresNode.isNull()) {
+                expiration = nowInSeconds() + expiresNode.asLong();
+            } else {
+                // Default to 1 hour if no expiration provided
+                expiration = nowInSeconds() + 3600;
+            }
+            
+            // Get token - support nested paths with dot notation
+            JsonNode tokenNode = getNestedNode(oauthResponseProperties, responseTokenProperty);
+            if (tokenNode != null && !tokenNode.isNull()) {
+                oauthHeader = oauthHeaderFormat.replace(
+                        RESPONSE_TOKEN_PROPERTY,
+                        tokenNode.textValue()
+                );
+                logger.info("OAuth token refreshed successfully");
+            } else {
+                logger.error("Token not found in OAuth response at path: {}", responseTokenProperty);
+            }
         } catch (Exception e) {
             logger.error("Error parsing OAuth response: {}", oauthResponse);
             logger.warn("OAuth token not refreshed, will try again next time.");
         }
+    }
+    
+    /**
+     * Get a nested node using dot notation (e.g., "data.token")
+     */
+    private JsonNode getNestedNode(JsonNode root, String path) {
+        if (path == null || root == null) {
+            return null;
+        }
+        String[] parts = path.split("\\.");
+        JsonNode current = root;
+        for (String part : parts) {
+            if (current == null) {
+                return null;
+            }
+            current = current.get(part);
+        }
+        return current;
     }
 
     private long nowInSeconds() {

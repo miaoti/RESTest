@@ -1,0 +1,2725 @@
+---
+auth:
+  required: true
+  queryParams: {}
+  headerParams: {}
+  apiKeysPath: null
+  headersPath: null
+  oauthPath: TrainTicket/oauth.json
+testConfiguration:
+  operations:
+  - testPath: /actuator
+    operationId: ts-wait-order-service_linksUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /actuator/health
+    operationId: ts-wait-order-service_handleUsingGET_1
+    method: get
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /actuator/health/**
+    operationId: ts-wait-order-service_handleUsingGET
+    method: get
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /actuator/info
+    operationId: ts-wait-order-service_handleUsingGET_2
+    method: get
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/adminbasicservice/adminbasic/configs
+    operationId: ts-admin-basic-info-service_getAllConfigsUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/adminbasicservice/adminbasic/configs
+    operationId: ts-admin-basic-info-service_modifyConfigUsingPUT
+    method: put
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/adminbasicservice/adminbasic/configs
+    operationId: ts-admin-basic-info-service_addConfigUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/adminbasicservice/adminbasic/configs/{name}"
+    operationId: ts-admin-basic-info-service_deleteConfigUsingDELETE
+    method: delete
+    testParameters:
+    - name: name
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/adminbasicservice/adminbasic/contacts
+    operationId: ts-admin-basic-info-service_getAllContactsUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/adminbasicservice/adminbasic/contacts
+    operationId: ts-admin-basic-info-service_modifyContactsUsingPUT
+    method: put
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/adminbasicservice/adminbasic/contacts
+    operationId: ts-admin-basic-info-service_addContactsUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/adminbasicservice/adminbasic/contacts/{contactsId}"
+    operationId: ts-admin-basic-info-service_deleteContactsUsingDELETE
+    method: delete
+    testParameters:
+    - name: contactsId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/adminbasicservice/adminbasic/prices
+    operationId: ts-admin-basic-info-service_getAllPricesUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/adminbasicservice/adminbasic/prices
+    operationId: ts-admin-basic-info-service_modifyPriceUsingPUT
+    method: put
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/adminbasicservice/adminbasic/prices
+    operationId: ts-admin-basic-info-service_addPriceUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/adminbasicservice/adminbasic/prices/{pricesId}"
+    operationId: ts-admin-basic-info-service_deletePriceUsingDELETE
+    method: delete
+    testParameters:
+    - name: pricesId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/adminbasicservice/adminbasic/stations
+    operationId: ts-admin-basic-info-service_getAllStationsUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/adminbasicservice/adminbasic/stations
+    operationId: ts-admin-basic-info-service_modifyStationUsingPUT
+    method: put
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/adminbasicservice/adminbasic/stations
+    operationId: ts-admin-basic-info-service_addStationUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/adminbasicservice/adminbasic/stations/{id}"
+    operationId: ts-admin-basic-info-service_deleteStationUsingDELETE
+    method: delete
+    testParameters:
+    - name: id
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/adminbasicservice/adminbasic/trains
+    operationId: ts-admin-basic-info-service_getAllTrainsUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/adminbasicservice/adminbasic/trains
+    operationId: ts-admin-basic-info-service_modifyTrainUsingPUT
+    method: put
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/adminbasicservice/adminbasic/trains
+    operationId: ts-admin-basic-info-service_addTrainUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/adminbasicservice/adminbasic/trains/{id}"
+    operationId: ts-admin-basic-info-service_deleteTrainUsingDELETE
+    method: delete
+    testParameters:
+    - name: id
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/adminbasicservice/welcome
+    operationId: ts-admin-basic-info-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /error
+    operationId: ts-wait-order-service_errorUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /error
+    operationId: ts-wait-order-service_errorUsingPUT
+    method: put
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /error
+    operationId: ts-wait-order-service_errorUsingPOST
+    method: post
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /error
+    operationId: ts-wait-order-service_errorUsingDELETE
+    method: delete
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /error
+    operationId: ts-wait-order-service_errorUsingPATCH
+    method: patch
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/adminorderservice/adminorder
+    operationId: ts-admin-order-service_getAllOrdersUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/adminorderservice/adminorder
+    operationId: ts-admin-order-service_updateOrderUsingPUT
+    method: put
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/adminorderservice/adminorder
+    operationId: ts-admin-order-service_addOrderUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/adminorderservice/adminorder/{orderId}/{trainNumber}"
+    operationId: ts-admin-order-service_deleteOrderUsingDELETE
+    method: delete
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: trainNumber
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/adminorderservice/welcome
+    operationId: ts-admin-order-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/adminrouteservice/adminroute
+    operationId: ts-admin-route-service_getAllRoutesUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/adminrouteservice/adminroute
+    operationId: ts-admin-route-service_addRouteUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/adminrouteservice/adminroute/{routeId}"
+    operationId: ts-admin-route-service_deleteRouteUsingDELETE
+    method: delete
+    testParameters:
+    - name: routeId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/adminrouteservice/welcome
+    operationId: ts-admin-route-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/admintravelservice/admintravel
+    operationId: ts-admin-travel-service_getAllTravelsUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/admintravelservice/admintravel
+    operationId: ts-admin-travel-service_updateTravelUsingPUT
+    method: put
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/admintravelservice/admintravel
+    operationId: ts-admin-travel-service_addTravelUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/admintravelservice/admintravel/{tripId}"
+    operationId: ts-admin-travel-service_deleteTravelUsingDELETE
+    method: delete
+    testParameters:
+    - name: tripId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/admintravelservice/welcome
+    operationId: ts-admin-travel-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/adminuserservice/users
+    operationId: ts-admin-user-service_getAllUsersUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/adminuserservice/users
+    operationId: ts-admin-user-service_updateUserUsingPUT
+    method: put
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/adminuserservice/users
+    operationId: ts-admin-user-service_addUserUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/adminuserservice/users/welcome
+    operationId: ts-admin-user-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: "/api/v1/adminuserservice/users/{userId}"
+    operationId: ts-admin-user-service_deleteUserUsingDELETE
+    method: delete
+    testParameters:
+    - name: userId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/assuranceservice/assurance/orderid/{orderId}"
+    operationId: ts-assurance-service_findAssuranceByOrderIdUsingGET
+    method: get
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/assuranceservice/assurances
+    operationId: ts-assurance-service_getAllAssurancesUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: "/api/v1/assuranceservice/assurances/assuranceid/{assuranceId}"
+    operationId: ts-assurance-service_getAssuranceByIdUsingGET
+    method: get
+    testParameters:
+    - name: assuranceId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/assuranceservice/assurances/assuranceid/{assuranceId}"
+    operationId: ts-assurance-service_deleteAssuranceUsingDELETE
+    method: delete
+    testParameters:
+    - name: assuranceId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/assuranceservice/assurances/orderid/{orderId}"
+    operationId: ts-assurance-service_deleteAssuranceByOrderIdUsingDELETE
+    method: delete
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/assuranceservice/assurances/types
+    operationId: ts-assurance-service_getAllAssuranceTypeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: "/api/v1/assuranceservice/assurances/{assuranceId}/{orderId}/{typeIndex}"
+    operationId: ts-assurance-service_modifyAssuranceUsingPATCH
+    method: patch
+    testParameters:
+    - name: assuranceId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: typeIndex
+      in: path
+      weight: null
+      generators:
+      - type: RandomNumber
+        genParameters:
+        - name: type
+          values:
+          - int32
+          objectValues: null
+        - name: min
+          values:
+          - 1
+          objectValues: null
+        - name: max
+          values:
+          - 100
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/assuranceservice/assurances/{typeIndex}/{orderId}"
+    operationId: ts-assurance-service_createNewAssuranceUsingGET
+    method: get
+    testParameters:
+    - name: typeIndex
+      in: path
+      weight: null
+      generators:
+      - type: RandomNumber
+        genParameters:
+        - name: type
+          values:
+          - int32
+          objectValues: null
+        - name: min
+          values:
+          - 1
+          objectValues: null
+        - name: max
+          values:
+          - 100
+          objectValues: null
+        valid: true
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/assuranceservice/welcome
+    operationId: ts-assurance-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/basicservice/basic/travel
+    operationId: ts-basic-service_queryForTravelUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/basicservice/basic/travels
+    operationId: ts-basic-service_queryForTravelsUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/basicservice/basic/{stationName}"
+    operationId: ts-basic-service_queryForStationIdUsingGET
+    method: get
+    testParameters:
+    - name: stationName
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/basicservice/welcome
+    operationId: ts-basic-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: "/api/v1/cancelservice/cancel/refound/{orderId}"
+    operationId: ts-cancel-service_calculateUsingGET
+    method: get
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/cancelservice/cancel/{orderId}/{loginId}"
+    operationId: ts-cancel-service_cancelTicketUsingGET
+    method: get
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: loginId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/cancelservice/welcome
+    operationId: ts-cancel-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/configservice/configs
+    operationId: ts-config-service_queryAllUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/configservice/configs
+    operationId: ts-config-service_updateConfigUsingPUT
+    method: put
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/configservice/configs
+    operationId: ts-config-service_createConfigUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/configservice/configs/{configName}"
+    operationId: ts-config-service_retrieveUsingGET
+    method: get
+    testParameters:
+    - name: configName
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/configservice/configs/{configName}"
+    operationId: ts-config-service_deleteConfigUsingDELETE
+    method: delete
+    testParameters:
+    - name: configName
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/configservice/welcome
+    operationId: ts-config-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/consignpriceservice/consignprice
+    operationId: ts-consign-price-service_modifyPriceConfigUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/consignpriceservice/consignprice/config
+    operationId: ts-consign-price-service_getPriceConfigUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/consignpriceservice/consignprice/price
+    operationId: ts-consign-price-service_getPriceInfoUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: "/api/v1/consignpriceservice/consignprice/{weight}/{isWithinRegion}"
+    operationId: ts-consign-price-service_getPriceByWeightAndRegionUsingGET
+    method: get
+    testParameters:
+    - name: weight
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: isWithinRegion
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/consignpriceservice/welcome
+    operationId: ts-consign-price-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/consignservice/consigns
+    operationId: ts-consign-service_updateConsignUsingPUT
+    method: put
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/consignservice/consigns
+    operationId: ts-consign-service_insertConsignUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/consignservice/consigns/account/{id}"
+    operationId: ts-consign-service_findByAccountIdUsingGET
+    method: get
+    testParameters:
+    - name: id
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/consignservice/consigns/order/{id}"
+    operationId: ts-consign-service_findByOrderIdUsingGET
+    method: get
+    testParameters:
+    - name: id
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/consignservice/consigns/{consignee}"
+    operationId: ts-consign-service_findByConsigneeUsingGET
+    method: get
+    testParameters:
+    - name: consignee
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/consignservice/welcome
+    operationId: ts-consign-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/contactservice/contacts
+    operationId: ts-contacts-service_getAllContactsUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/contactservice/contacts
+    operationId: ts-contacts-service_modifyContactsUsingPUT
+    method: put
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/contactservice/contacts
+    operationId: ts-contacts-service_createNewContactsUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/contactservice/contacts/account/{accountId}"
+    operationId: ts-contacts-service_findContactsByAccountIdUsingGET
+    method: get
+    testParameters:
+    - name: accountId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/contactservice/contacts/admin
+    operationId: ts-contacts-service_createNewContactsAdminUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/contactservice/contacts/welcome
+    operationId: ts-contacts-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: "/api/v1/contactservice/contacts/{contactsId}"
+    operationId: ts-contacts-service_deleteContactsUsingDELETE
+    method: delete
+    testParameters:
+    - name: contactsId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/contactservice/contacts/{id}"
+    operationId: ts-contacts-service_getContactsByContactsIdUsingGET
+    method: get
+    testParameters:
+    - name: id
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/executeservice/execute/collected/{orderId}"
+    operationId: ts-execute-service_collectTicketUsingGET
+    method: get
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/executeservice/execute/execute/{orderId}"
+    operationId: ts-execute-service_executeTicketUsingGET
+    method: get
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/executeservice/welcome
+    operationId: ts-execute-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/fooddeliveryservice/orders
+    operationId: ts-food-delivery-service_createFoodDeliveryOrderUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/fooddeliveryservice/orders/all
+    operationId: ts-food-delivery-service_getAllFoodDeliveryOrdersUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: "/api/v1/fooddeliveryservice/orders/d/{orderId}"
+    operationId: ts-food-delivery-service_deleteFoodDeliveryOrderUsingDELETE
+    method: delete
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/fooddeliveryservice/orders/dtime
+    operationId: ts-food-delivery-service_updateDeliveryTimeUsingPUT
+    method: put
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/fooddeliveryservice/orders/seatno
+    operationId: ts-food-delivery-service_updateSeatNoUsingPUT
+    method: put
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/fooddeliveryservice/orders/store/{storeId}"
+    operationId: ts-food-delivery-service_getFoodDeliveryOrderByStoreIdUsingGET
+    method: get
+    testParameters:
+    - name: storeId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/fooddeliveryservice/orders/tripid
+    operationId: ts-food-delivery-service_updateTripIdUsingPUT
+    method: put
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/fooddeliveryservice/orders/{orderId}"
+    operationId: ts-food-delivery-service_getFoodDeliveryOrderByIdUsingGET
+    method: get
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/fooddeliveryservice/welcome
+    operationId: ts-food-delivery-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/foodservice/createOrderBatch
+    operationId: ts-food-service_createFoodBatchesUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/foodservice/foods/{date}/{startStation}/{endStation}/{tripId}"
+    operationId: ts-food-service_getAllFoodUsingGET
+    method: get
+    testParameters:
+    - name: date
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: startStation
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: endStation
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: tripId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/foodservice/orders
+    operationId: ts-food-service_findAllFoodOrderUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/foodservice/orders
+    operationId: ts-food-service_updateFoodOrderUsingPUT
+    method: put
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/foodservice/orders
+    operationId: ts-food-service_createFoodOrderUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/foodservice/orders/{orderId}"
+    operationId: ts-food-service_findFoodOrderByOrderIdUsingGET
+    method: get
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/foodservice/orders/{orderId}"
+    operationId: ts-food-service_deleteFoodOrderUsingDELETE
+    method: delete
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/foodservice/test_send_delivery
+    operationId: ts-food-service_test_send_deliveryUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/foodservice/welcome
+    operationId: ts-food-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/inside_pay_service/inside_payment
+    operationId: ts-inside-payment-service_payUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/inside_pay_service/inside_payment/account
+    operationId: ts-inside-payment-service_queryAccountUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/inside_pay_service/inside_payment/account
+    operationId: ts-inside-payment-service_createAccountUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/inside_pay_service/inside_payment/difference
+    operationId: ts-inside-payment-service_payDifferenceUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/inside_pay_service/inside_payment/drawback/{userId}/{money}"
+    operationId: ts-inside-payment-service_drawBackUsingGET
+    method: get
+    testParameters:
+    - name: userId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: money
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/inside_pay_service/inside_payment/money
+    operationId: ts-inside-payment-service_queryAddMoneyUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/inside_pay_service/inside_payment/payment
+    operationId: ts-inside-payment-service_queryPaymentUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: "/api/v1/inside_pay_service/inside_payment/{userId}/{money}"
+    operationId: ts-inside-payment-service_addMoneyUsingGET
+    method: get
+    testParameters:
+    - name: userId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: money
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/inside_pay_service/welcome
+    operationId: ts-inside-payment-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/notifyservice/notification/order_cancel_success
+    operationId: ts-notification-service_order_cancel_successUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/notifyservice/notification/order_changed_success
+    operationId: ts-notification-service_order_changed_successUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/notifyservice/notification/order_create_success
+    operationId: ts-notification-service_order_create_successUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/notifyservice/notification/preserve_success
+    operationId: ts-notification-service_preserve_successUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/notifyservice/test_send_mail
+    operationId: ts-notification-service_test_send_mailUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/notifyservice/test_send_mq
+    operationId: ts-notification-service_test_sendUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/notifyservice/welcome
+    operationId: ts-notification-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/orderOtherService/orderOther
+    operationId: ts-order-other-service_findAllOrderUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/orderOtherService/orderOther
+    operationId: ts-order-other-service_saveOrderInfoUsingPUT
+    method: put
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/orderOtherService/orderOther
+    operationId: ts-order-other-service_createNewOrderUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/orderOtherService/orderOther/admin
+    operationId: ts-order-other-service_updateOrderUsingPUT
+    method: put
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/orderOtherService/orderOther/admin
+    operationId: ts-order-other-service_addcreateNewOrderUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/orderOtherService/orderOther/orderPay/{orderId}"
+    operationId: ts-order-other-service_payOrderUsingGET
+    method: get
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/orderOtherService/orderOther/price/{orderId}"
+    operationId: ts-order-other-service_getOrderPriceUsingGET
+    method: get
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/orderOtherService/orderOther/query
+    operationId: ts-order-other-service_queryOrdersUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/orderOtherService/orderOther/refresh
+    operationId: ts-order-other-service_queryOrdersForRefreshUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/orderOtherService/orderOther/security/{checkDate}/{accountId}"
+    operationId: ts-order-other-service_securityInfoCheckUsingGET
+    method: get
+    testParameters:
+    - name: checkDate
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: accountId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/orderOtherService/orderOther/status/{orderId}/{status}"
+    operationId: ts-order-other-service_modifyOrderUsingGET
+    method: get
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: status
+      in: path
+      weight: null
+      generators:
+      - type: RandomNumber
+        genParameters:
+        - name: type
+          values:
+          - int32
+          objectValues: null
+        - name: min
+          values:
+          - 1
+          objectValues: null
+        - name: max
+          values:
+          - 100
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/orderOtherService/orderOther/tickets
+    operationId: ts-order-other-service_getTicketListByDateAndTripIdUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/orderOtherService/orderOther/{orderId}"
+    operationId: ts-order-other-service_getOrderByIdUsingGET
+    method: get
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/orderOtherService/orderOther/{orderId}"
+    operationId: ts-order-other-service_deleteOrderUsingDELETE
+    method: delete
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/orderOtherService/orderOther/{travelDate}/{trainNumber}"
+    operationId: ts-order-other-service_calculateSoldTicketUsingGET
+    method: get
+    testParameters:
+    - name: travelDate
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: trainNumber
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/orderOtherService/welcome
+    operationId: ts-order-other-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/orderservice/order
+    operationId: ts-order-service_findAllOrderUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/orderservice/order
+    operationId: ts-order-service_saveOrderInfoUsingPUT
+    method: put
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/orderservice/order
+    operationId: ts-order-service_createNewOrderUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/orderservice/order/admin
+    operationId: ts-order-service_updateOrderUsingPUT
+    method: put
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/orderservice/order/admin
+    operationId: ts-order-service_addcreateNewOrderUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/orderservice/order/orderPay/{orderId}"
+    operationId: ts-order-service_payOrderUsingGET
+    method: get
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/orderservice/order/price/{orderId}"
+    operationId: ts-order-service_getOrderPriceUsingGET
+    method: get
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/orderservice/order/query
+    operationId: ts-order-service_queryOrdersUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/orderservice/order/refresh
+    operationId: ts-order-service_queryOrdersForRefreshUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/orderservice/order/security/{checkDate}/{accountId}"
+    operationId: ts-order-service_securityInfoCheckUsingGET
+    method: get
+    testParameters:
+    - name: checkDate
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: accountId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/orderservice/order/status/{orderId}/{status}"
+    operationId: ts-order-service_modifyOrderUsingGET
+    method: get
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: status
+      in: path
+      weight: null
+      generators:
+      - type: RandomNumber
+        genParameters:
+        - name: type
+          values:
+          - int32
+          objectValues: null
+        - name: min
+          values:
+          - 1
+          objectValues: null
+        - name: max
+          values:
+          - 100
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/orderservice/order/tickets
+    operationId: ts-order-service_getTicketListByDateAndTripIdUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/orderservice/order/{orderId}"
+    operationId: ts-order-service_getOrderByIdUsingGET
+    method: get
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/orderservice/order/{orderId}"
+    operationId: ts-order-service_deleteOrderUsingDELETE
+    method: delete
+    testParameters:
+    - name: orderId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/orderservice/order/{travelDate}/{trainNumber}"
+    operationId: ts-order-service_calculateSoldTicketUsingGET
+    method: get
+    testParameters:
+    - name: travelDate
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: trainNumber
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/orderservice/welcome
+    operationId: ts-order-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/paymentservice/payment
+    operationId: ts-payment-service_queryUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/paymentservice/payment
+    operationId: ts-payment-service_payUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/paymentservice/payment/money
+    operationId: ts-payment-service_addMoneyUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/paymentservice/welcome
+    operationId: ts-payment-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/preserveotherservice/preserveOther
+    operationId: ts-preserve-other-service_preserveUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/preserveotherservice/welcome
+    operationId: ts-preserve-other-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/preserveservice/preserve
+    operationId: ts-preserve-service_preserveUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/preserveservice/welcome
+    operationId: ts-preserve-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/priceservice/prices
+    operationId: ts-price-service_queryAllUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/priceservice/prices
+    operationId: ts-price-service_updateUsingPUT
+    method: put
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/priceservice/prices
+    operationId: ts-price-service_createUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/priceservice/prices/byRouteIdsAndTrainTypes
+    operationId: ts-price-service_queryUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/priceservice/prices/welcome
+    operationId: ts-price-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: "/api/v1/priceservice/prices/{pricesId}"
+    operationId: ts-price-service_deleteUsingDELETE
+    method: delete
+    testParameters:
+    - name: pricesId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/priceservice/prices/{routeId}/{trainType}"
+    operationId: ts-price-service_queryUsingGET
+    method: get
+    testParameters:
+    - name: routeId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: trainType
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/rebookservice/rebook
+    operationId: ts-rebook-service_rebookUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/rebookservice/rebook/difference
+    operationId: ts-rebook-service_payDifferenceUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/rebookservice/welcome
+    operationId: ts-rebook-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/routeplanservice/routePlan/cheapestRoute
+    operationId: ts-route-plan-service_getCheapestRoutesUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/routeplanservice/routePlan/minStopStations
+    operationId: ts-route-plan-service_getMinStopStationsUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/routeplanservice/routePlan/quickestRoute
+    operationId: ts-route-plan-service_getQuickestRoutesUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/routeplanservice/welcome
+    operationId: ts-route-plan-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/routeservice/routes
+    operationId: ts-route-service_queryAllUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/routeservice/routes
+    operationId: ts-route-service_createAndModifyRouteUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/routeservice/routes/byIds
+    operationId: ts-route-service_queryByIdsUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/routeservice/routes/{routeId}"
+    operationId: ts-route-service_queryByIdUsingGET
+    method: get
+    testParameters:
+    - name: routeId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/routeservice/routes/{routeId}"
+    operationId: ts-route-service_deleteRouteUsingDELETE
+    method: delete
+    testParameters:
+    - name: routeId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/routeservice/routes/{start}/{end}"
+    operationId: ts-route-service_queryByStartAndTerminalUsingGET
+    method: get
+    testParameters:
+    - name: start
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    - name: end
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/routeservice/welcome
+    operationId: ts-route-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/seatservice/seats
+    operationId: ts-seat-service_createUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/seatservice/seats/left_tickets
+    operationId: ts-seat-service_getLeftTicketOfIntervalUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/seatservice/welcome
+    operationId: ts-seat-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/securityservice/securityConfigs
+    operationId: ts-security-service_findAllSecurityConfigUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/securityservice/securityConfigs
+    operationId: ts-security-service_updateUsingPUT
+    method: put
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/securityservice/securityConfigs
+    operationId: ts-security-service_createUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/securityservice/securityConfigs/{accountId}"
+    operationId: ts-security-service_checkUsingGET
+    method: get
+    testParameters:
+    - name: accountId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/securityservice/securityConfigs/{id}"
+    operationId: ts-security-service_deleteUsingDELETE
+    method: delete
+    testParameters:
+    - name: id
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/securityservice/welcome
+    operationId: ts-security-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/stationfoodservice/stationfoodstores
+    operationId: ts-station-food-service_getAllFoodStoresUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/stationfoodservice/stationfoodstores
+    operationId: ts-station-food-service_getFoodStoresByStationNamesUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/stationfoodservice/stationfoodstores/bystoreid/{stationFoodStoreId}"
+    operationId: ts-station-food-service_getFoodListByStationFoodStoreIdUsingGET
+    method: get
+    testParameters:
+    - name: stationFoodStoreId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/stationfoodservice/stationfoodstores/welcome
+    operationId: ts-station-food-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: "/api/v1/stationfoodservice/stationfoodstores/{stationId}"
+    operationId: ts-station-food-service_getFoodStoresOfStationUsingGET
+    method: get
+    testParameters:
+    - name: stationName
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/stationservice/stations
+    operationId: ts-station-service_queryUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/stationservice/stations
+    operationId: ts-station-service_updateUsingPUT
+    method: put
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/stationservice/stations
+    operationId: ts-station-service_createUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/stationservice/stations/id/{stationNameForId}"
+    operationId: ts-station-service_queryForStationIdUsingGET
+    method: get
+    testParameters:
+    - name: stationNameForId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/stationservice/stations/idlist
+    operationId: ts-station-service_queryForIdBatchUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/stationservice/stations/name/{stationIdForName}"
+    operationId: ts-station-service_queryByIdUsingGET
+    method: get
+    testParameters:
+    - name: stationIdForName
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/stationservice/stations/namelist
+    operationId: ts-station-service_queryForNameBatchUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/stationservice/stations/{stationsId}"
+    operationId: ts-station-service_deleteUsingDELETE
+    method: delete
+    testParameters:
+    - name: stationsId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/stationservice/welcome
+    operationId: ts-station-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/trainfoodservice/trainfoods
+    operationId: ts-train-food-service_getAllTrainFoodUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/trainfoodservice/trainfoods/welcome
+    operationId: ts-train-food-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: "/api/v1/trainfoodservice/trainfoods/{tripId}"
+    operationId: ts-train-food-service_getTrainFoodOfTripUsingGET
+    method: get
+    testParameters:
+    - name: tripId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/trainservice/trains
+    operationId: ts-train-service_queryUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/trainservice/trains
+    operationId: ts-train-service_updateUsingPUT
+    method: put
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/trainservice/trains
+    operationId: ts-train-service_createUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: "/api/v1/trainservice/trains/byName/{name}"
+    operationId: ts-train-service_retrieveByNameUsingGET
+    method: get
+    testParameters:
+    - name: name
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/trainservice/trains/byNames
+    operationId: ts-train-service_retrieveByNameUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/trainservice/trains/welcome
+    operationId: ts-train-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: "/api/v1/trainservice/trains/{id}"
+    operationId: ts-train-service_retrieveUsingGET
+    method: get
+    testParameters:
+    - name: id
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/trainservice/trains/{id}"
+    operationId: ts-train-service_deleteUsingDELETE
+    method: delete
+    testParameters:
+    - name: id
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/travelplanservice/travelPlan/cheapest
+    operationId: ts-travel-plan-service_getByCheapestUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/travelplanservice/travelPlan/minStation
+    operationId: ts-travel-plan-service_getByMinStationUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/travelplanservice/travelPlan/quickest
+    operationId: ts-travel-plan-service_getByQuickestUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/travelplanservice/travelPlan/transferResult
+    operationId: ts-travel-plan-service_getTransferResultUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/travelplanservice/welcome
+    operationId: ts-travel-plan-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/travelservice/admin_trip
+    operationId: ts-travel-service_adminQueryAllUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: "/api/v1/travelservice/routes/{tripId}"
+    operationId: ts-travel-service_getRouteByTripIdUsingGET
+    method: get
+    testParameters:
+    - name: tripId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/travelservice/train_types/{tripId}"
+    operationId: ts-travel-service_getTrainTypeByTripIdUsingGET
+    method: get
+    testParameters:
+    - name: tripId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/travelservice/trip_detail
+    operationId: ts-travel-service_getTripAllDetailInfoUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/travelservice/trips
+    operationId: ts-travel-service_queryAllUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/travelservice/trips
+    operationId: ts-travel-service_updateTripUsingPUT
+    method: put
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/travelservice/trips
+    operationId: ts-travel-service_createTripUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/travelservice/trips/left
+    operationId: ts-travel-service_queryInfoUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/travelservice/trips/left_parallel
+    operationId: ts-travel-service_queryInfoInparallelUsingPOST
+    method: post
+    testParameters: []
+    expectedResponse: 200
+  - testPath: /api/v1/travelservice/trips/routes
+    operationId: ts-travel-service_getTripsByRouteIdUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/travelservice/trips/{tripId}"
+    operationId: ts-travel-service_retrieveUsingGET
+    method: get
+    testParameters:
+    - name: tripId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/travelservice/trips/{tripId}"
+    operationId: ts-travel-service_deleteTripUsingDELETE
+    method: delete
+    testParameters:
+    - name: tripId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/travelservice/welcome
+    operationId: ts-travel-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/travel2service/admin_trip
+    operationId: ts-travel2-service_adminQueryAllUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: "/api/v1/travel2service/routes/{tripId}"
+    operationId: ts-travel2-service_getRouteByTripIdUsingGET
+    method: get
+    testParameters:
+    - name: tripId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/travel2service/train_types/{tripId}"
+    operationId: ts-travel2-service_getTrainTypeByTripIdUsingGET
+    method: get
+    testParameters:
+    - name: tripId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/travel2service/trip_detail
+    operationId: ts-travel2-service_getTripAllDetailInfoUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/travel2service/trips
+    operationId: ts-travel2-service_queryAllUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/travel2service/trips
+    operationId: ts-travel2-service_updateTripUsingPUT
+    method: put
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/travel2service/trips
+    operationId: ts-travel2-service_createTripUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/travel2service/trips/left
+    operationId: ts-travel2-service_queryInfoUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/travel2service/trips/routes
+    operationId: ts-travel2-service_getTripsByRouteIdUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/travel2service/trips/{tripId}"
+    operationId: ts-travel2-service_retrieveUsingGET
+    method: get
+    testParameters:
+    - name: tripId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/travel2service/trips/{tripId}"
+    operationId: ts-travel2-service_deleteTripUsingDELETE
+    method: delete
+    testParameters:
+    - name: tripId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/travel2service/welcome
+    operationId: ts-travel2-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/userservice/users
+    operationId: ts-user-service_getAllUserUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/userservice/users
+    operationId: ts-user-service_updateUserUsingPUT
+    method: put
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/userservice/users/hello
+    operationId: ts-user-service_testHelloUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: "/api/v1/userservice/users/id/{userId}"
+    operationId: ts-user-service_getUserByUserIdUsingGET
+    method: get
+    testParameters:
+    - name: userId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/userservice/users/register
+    operationId: ts-user-service_registerUserUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/userservice/users/{userId}"
+    operationId: ts-user-service_deleteUserByIdUsingDELETE
+    method: delete
+    testParameters:
+    - name: userId
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/v1/userservice/users/{userName}"
+    operationId: ts-user-service_getUserByUserNameUsingGET
+    method: get
+    testParameters:
+    - name: userName
+      in: path
+      weight: null
+      generators:
+      - type: RandomEnglishWord
+        genParameters:
+        - name: maxWords
+          values:
+          - 1
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/waitorderservice/order
+    operationId: ts-wait-order-service_createNewOrderUsingPOST
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: null
+      generators:
+      - type: BodyGenerator
+        genParameters: []
+        valid: true
+    expectedResponse: 200
+  - testPath: /api/v1/waitorderservice/orders
+    operationId: ts-wait-order-service_getAllOrdersUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/waitorderservice/waitlistorders
+    operationId: ts-wait-order-service_getWaitListOrdersUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200
+  - testPath: /api/v1/waitorderservice/welcome
+    operationId: ts-wait-order-service_homeUsingGET
+    method: get
+    testParameters: null
+    expectedResponse: 200

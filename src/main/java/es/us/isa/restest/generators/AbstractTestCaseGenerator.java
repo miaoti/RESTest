@@ -239,14 +239,24 @@ public abstract class AbstractTestCaseGenerator {
 		// Get test configuration object for the operation
 		Operation testOperation = TestConfigurationVisitor.getOperation(conf, path, method.name());
 
-		// Create test data generators for each parameter
-		createGenerators(testOperation);
+		// Set the service name context for schema resolution
+		if (testOperation.getOpenApiOperation() != null) {
+			String serviceName = SchemaRefResolver.getServiceNameFromOperation(testOperation.getOpenApiOperation());
+			SchemaRefResolver.setCurrentServiceName(serviceName);
+		}
 
-		// Update these booleans, which may differ for every operation
-		hasStatefulGenerators = hasStatefulGenerators(testOperation);
+		try {
+			// Create test data generators for each parameter
+			createGenerators(testOperation);
 
+			// Update these booleans, which may differ for every operation
+			hasStatefulGenerators = hasStatefulGenerators(testOperation);
 
-		return generateOperationTestCases(testOperation);
+			return generateOperationTestCases(testOperation);
+		} finally {
+			// Clear the service name context after processing
+			SchemaRefResolver.clearCurrentServiceName();
+		}
 	}
 
 
@@ -453,7 +463,7 @@ public abstract class AbstractTestCaseGenerator {
 
 
 	protected void updateContentType(TestCase test, io.swagger.v3.oas.models.Operation operation) {
-		if (operation.getRequestBody() != null) {
+		if (operation.getRequestBody() != null && operation.getRequestBody().getContent() != null) {
 			if (operation.getRequestBody().getContent().containsKey("application/x-www-form-urlencoded"))
 				test.setInputFormat("application/x-www-form-urlencoded");
 			else if (operation.getRequestBody().getContent().keySet().stream().noneMatch(x -> x.matches(MEDIA_TYPE_APPLICATION_JSON_REGEX)))

@@ -64,12 +64,55 @@ public class RESTAssuredWriter implements IWriter {
 		this.statefulFilter = hasStatefulGenerators(testConf);
 	}
 	
+	// Maximum tests per class to avoid "too many constants" compilation error
+	// Java has a limit of ~65,535 constants in the constant pool per class
+	private static final int MAX_TESTS_PER_CLASS = 500;
+	
+	// Track generated class names for multi-class scenarios
+	private java.util.List<String> generatedClassNames = new java.util.ArrayList<>();
+	
 	/* (non-Javadoc)
 	 * @see es.us.isa.restest.writers.IWriter#write(java.util.Collection)
 	 */
 	@Override
 	public void write(Collection<TestCase> testCases) {
+		generatedClassNames.clear();
 		
+		// Convert to list for easier partitioning
+		java.util.List<TestCase> testList = new java.util.ArrayList<>(testCases);
+		int totalTests = testList.size();
+		
+		if (totalTests <= MAX_TESTS_PER_CLASS) {
+			// Single class - original behavior
+			writeTestClass(testList, className, 1);
+			generatedClassNames.add(className);
+		} else {
+			// Split into multiple classes
+			int numClasses = (int) Math.ceil((double) totalTests / MAX_TESTS_PER_CLASS);
+			logger.info("Splitting {} test cases into {} classes ({} tests per class max)", 
+				totalTests, numClasses, MAX_TESTS_PER_CLASS);
+			
+			for (int i = 0; i < numClasses; i++) {
+				int fromIndex = i * MAX_TESTS_PER_CLASS;
+				int toIndex = Math.min(fromIndex + MAX_TESTS_PER_CLASS, totalTests);
+				java.util.List<TestCase> partition = testList.subList(fromIndex, toIndex);
+				
+				String partClassName = className + "_Part" + (i + 1);
+				writeTestClass(partition, partClassName, fromIndex + 1);
+				generatedClassNames.add(partClassName);
+				
+				logger.info("Generated class {} with {} tests", partClassName, partition.size());
+			}
+			
+			// Also generate a test suite class that runs all parts
+			generateTestSuiteClass();
+		}
+	}
+	
+	/**
+	 * Write a single test class with the given test cases.
+	 */
+	private void writeTestClass(java.util.List<TestCase> testCases, String clsName, int startTestNum) {
 		// Initializing content
 		String contentFile = "";
 		
@@ -77,7 +120,7 @@ public class RESTAssuredWriter implements IWriter {
 		contentFile += generateImports(packageName);
 		
 		// Generate className
-		contentFile += generateClassName(className);
+		contentFile += generateClassName(clsName);
 		
 		// Generate attributes
 		contentFile += generateAttributes(specPath);
@@ -86,20 +129,55 @@ public class RESTAssuredWriter implements IWriter {
 		contentFile += generateSetUp(baseURI);
 
 		// Generate tests
-		int ntest=1;
+		int ntest = startTestNum;
 		for(TestCase t: testCases)
-			contentFile += generateTest(t,ntest++);
+			contentFile += generateTest(t, ntest++);
 		
 		// Close class
 		contentFile += "}\n";
 		
 		//Save to file
-		saveToFile(targetDirJava,className,contentFile);
+		saveToFile(targetDirJava, clsName, contentFile);
+	}
+	
+	/**
+	 * Generate a JUnit test suite class that runs all part classes.
+	 */
+	private void generateTestSuiteClass() {
+		StringBuilder content = new StringBuilder();
 		
-		/* Test Compile
-		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-		compiler.run(System.in, System.out, System.err, TEST_LOCATION + this.specification.getInfo().getTitle().replaceAll(" ", "") + "Test.java");
-		*/
+		if (packageName != null) {
+			content.append("package ").append(packageName).append(";\n\n");
+		}
+		
+		content.append("import org.junit.runner.RunWith;\n");
+		content.append("import org.junit.runners.Suite;\n\n");
+		
+		content.append("@RunWith(Suite.class)\n");
+		content.append("@Suite.SuiteClasses({\n");
+		
+		for (int i = 0; i < generatedClassNames.size(); i++) {
+			content.append("    ").append(generatedClassNames.get(i)).append(".class");
+			if (i < generatedClassNames.size() - 1) {
+				content.append(",");
+			}
+			content.append("\n");
+		}
+		
+		content.append("})\n");
+		content.append("public class ").append(className).append(" {\n");
+		content.append("    // This is a test suite that runs all test part classes\n");
+		content.append("}\n");
+		
+		saveToFile(targetDirJava, className, content.toString());
+		logger.info("Generated test suite class {} with {} part classes", className, generatedClassNames.size());
+	}
+	
+	/**
+	 * Get the list of generated class names (for multi-class scenarios).
+	 */
+	public java.util.List<String> getGeneratedClassNames() {
+		return generatedClassNames;
 	}
 
 	private String generateImports(String packageName) {

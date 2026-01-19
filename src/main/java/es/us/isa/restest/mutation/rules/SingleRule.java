@@ -35,12 +35,17 @@ public abstract class SingleRule {
         objectNodes.add(schema);
 
         for(Map.Entry<String, Schema> entry : schema.getProperties().entrySet()) {
-            if ("array".equals(entry.getValue().getType())) {
-                apply(((ArraySchema) entry.getValue()).getItems(), internalNode, spec);
-            } else if ("object".equals(entry.getValue().getType())) {
-                objectNodes.addAll(getAllObjectNodes(entry.getValue(), internalNode, spec));
+            Schema<?> entrySchema = entry.getValue();
+            // Skip null schema entries
+            if (entrySchema == null) {
+                continue;
+            }
+            if ("array".equals(entrySchema.getType())) {
+                apply(((ArraySchema) entrySchema).getItems(), internalNode, spec);
+            } else if ("object".equals(entrySchema.getType())) {
+                objectNodes.addAll(getAllObjectNodes(entrySchema, internalNode, spec));
             } else if (!internalNode) {
-                objectNodes.add(entry.getValue());
+                objectNodes.add(entrySchema);
             }
         }
 

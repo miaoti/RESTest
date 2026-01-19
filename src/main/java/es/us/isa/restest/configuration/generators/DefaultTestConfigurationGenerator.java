@@ -16,6 +16,7 @@ import es.us.isa.restest.configuration.pojos.TestConfiguration;
 import es.us.isa.restest.configuration.pojos.TestConfigurationObject;
 import es.us.isa.restest.configuration.pojos.TestParameter;
 import es.us.isa.restest.specification.OpenAPISpecification;
+import es.us.isa.restest.util.SchemaRefResolver;
 import io.swagger.v3.oas.models.media.*;
 import io.swagger.v3.oas.models.parameters.Parameter;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -148,33 +149,42 @@ public class DefaultTestConfigurationGenerator {
 		Operation testOperation = new Operation();
 		testOperation.setTestPath(path);
 
-		// Set operation id (if defined)
-		if (operationEntry.getValue().getOperationId() != null)
-			testOperation.setOperationId(operationEntry.getValue().getOperationId());
-		else
-			testOperation.setOperationId("<SET OPERATION ID>");
+		// Set the service name context for schema resolution
+		String serviceName = SchemaRefResolver.getServiceNameFromOperation(operationEntry.getValue());
+		SchemaRefResolver.setCurrentServiceName(serviceName);
 
-		// Set HTTP method
-		testOperation.setMethod(operationEntry.getKey().name().toLowerCase());
+		try {
+			// Set operation id (if defined)
+			if (operationEntry.getValue().getOperationId() != null)
+				testOperation.setOperationId(operationEntry.getValue().getOperationId());
+			else
+				testOperation.setOperationId("<SET OPERATION ID>");
 
-		// Set parameters
-		if (operationEntry.getValue().getParameters() != null) {
-			testOperation.setTestParameters(generateTestParameters(operationEntry.getValue().getParameters()));
+			// Set HTTP method
+			testOperation.setMethod(operationEntry.getKey().name().toLowerCase());
+
+			// Set parameters
+			if (operationEntry.getValue().getParameters() != null) {
+				testOperation.setTestParameters(generateTestParameters(operationEntry.getValue().getParameters()));
+			}
+
+			// Set request body parameters
+			if (operationEntry.getValue().getRequestBody() != null && testOperation.getTestParameters() == null) {
+				testOperation
+						.setTestParameters(generateRequestBodyTestParameters(operationEntry.getValue().getRequestBody()));
+			} else if (operationEntry.getValue().getRequestBody() != null) {
+				testOperation.getTestParameters()
+						.addAll(generateRequestBodyTestParameters(operationEntry.getValue().getRequestBody()));
+			}
+
+			// Set expected output
+			testOperation.setExpectedResponse("200");
+
+			return testOperation;
+		} finally {
+			// Clear the service name context
+			SchemaRefResolver.clearCurrentServiceName();
 		}
-
-		// Set request body parameters
-		if (operationEntry.getValue().getRequestBody() != null && testOperation.getTestParameters() == null) {
-			testOperation
-					.setTestParameters(generateRequestBodyTestParameters(operationEntry.getValue().getRequestBody()));
-		} else if (operationEntry.getValue().getRequestBody() != null) {
-			testOperation.getTestParameters()
-					.addAll(generateRequestBodyTestParameters(operationEntry.getValue().getRequestBody()));
-		}
-
-		// Set expected output
-		testOperation.setExpectedResponse("200");
-
-		return testOperation;
 	}
 
 	// Generate test configuration data for input parameters
@@ -416,6 +426,12 @@ public class DefaultTestConfigurationGenerator {
 		// headers or form-data)
 		List<TestParameter> testParameters = new ArrayList<>();
 
+		// Check if content is null before accessing it
+		if (requestBody.getContent() == null) {
+			logger.warn("RequestBody has no content defined. Returning empty test parameters.");
+			return testParameters;
+		}
+
 		if (requestBody.getContent().keySet().stream().anyMatch(x -> x.matches(MEDIA_TYPE_APPLICATION_JSON_REGEX)) ||
 				requestBody.getContent().keySet().stream().anyMatch(x -> x.matches(MEDIA_TYPE_TEXT_PLAIN_REGEX))) {
 
@@ -523,6 +539,9 @@ public class DefaultTestConfigurationGenerator {
 		String bodyParam = null;
 		ObjectMapper objectMapper = new ObjectMapper();
 
+		// Check if schema is null before accessing it
+		Schema<?> schema = mediaType.getSchema();
+
 		// Try to get an example body from the Swagger specification
 		// Look for 'examples' field in the parameter object
 		if (mediaType.getExamples() != null) {
@@ -535,20 +554,26 @@ public class DefaultTestConfigurationGenerator {
 		}
 
 		// Look for 'example' field in the schema object
-		else if (mediaType.getSchema().getExample() != null) {
+		else if (schema != null && schema.getExample() != null) {
 			try {
-				bodyParam = objectMapper.writeValueAsString(mediaType.getSchema().getExample());
+				bodyParam = objectMapper.writeValueAsString(schema.getExample());
 			} catch (JsonProcessingException e) {
 				logger.error(e.getMessage(), e);
 			}
 		}
 
 		// Look for 'example' field in the schema object among Swagger definitions
-		else if (mediaType.getSchema().get$ref() != null) {
-			String bodyReference = mediaType.getSchema().get$ref();
+		else if (schema != null && schema.get$ref() != null) {
+			String bodyReference = schema.get$ref();
 			try {
-				bodyParam = objectMapper.writeValueAsString(spec.getSpecification().getComponents().getSchemas()
-						.get(bodyReference.replace("#/components/schemas/", "")).getExample());
+				// Use SchemaRefResolver to handle api_ prefix mapping
+				Schema<?> referencedSchema = SchemaRefResolver.resolveSchemaRef(
+						bodyReference, 
+						SchemaRefResolver.getCurrentServiceName(), 
+						spec.getSpecification());
+				if (referencedSchema != null && referencedSchema.getExample() != null) {
+					bodyParam = objectMapper.writeValueAsString(referencedSchema.getExample());
+				}
 			} catch (JsonProcessingException e) {
 				logger.error(e.getMessage(), e);
 			}

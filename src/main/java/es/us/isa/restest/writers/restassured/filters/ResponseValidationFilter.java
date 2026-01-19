@@ -35,7 +35,12 @@ public class ResponseValidationFilter extends RESTestFilter implements OrderedFi
     public ResponseValidationFilter(final String specUrlOrDefinition) {
         requireNonEmpty(specUrlOrDefinition, "A spec is required");
 
-        this.validator = OpenApiInteractionValidator.createFor(specUrlOrDefinition).build();
+        // Only create validator if response body analysis is enabled
+        if (enabled) {
+            this.validator = OpenApiInteractionValidator.createFor(specUrlOrDefinition).build();
+        } else {
+            this.validator = null;
+        }
     }
 
     @Override

@@ -9,18 +9,23 @@ import com.atlassian.oai.validator.OpenApiInteractionValidator;
 import com.atlassian.oai.validator.whitelist.ValidationErrorsWhitelist;
 
 import es.us.isa.restest.specification.OpenAPISpecification;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class OASAPIValidator {
 
+	private static final Logger logger = LogManager.getLogger(OASAPIValidator.class);
+	
 	private static OpenApiInteractionValidator validator;						// OAS validator
 	private static OpenAPISpecification spec = null;							// OAS specification
 	
 	private static OASAPIValidator instance = null;							// Singleton object
+	private static boolean validatorLoadFailed = false;						// Flag to track if validator loading failed
 	
 	
 	private OASAPIValidator(OpenAPISpecification spec) {
 		
-		this.spec = spec;
+		OASAPIValidator.spec = spec;
 		
 		// Test case validator:
 		// Whitelist: Fix for swagger-validation library: formData parameters defined as string should not
@@ -34,7 +39,14 @@ public class OASAPIValidator {
 								messageContainsSubstring("does not match any allowed primitive type (allowed: [\"string\"])")
 						)
 				);
-		this.validator = OpenApiInteractionValidator.createFor(spec.getPath()).withWhitelist(whitelist).build();
+		try {
+			validator = OpenApiInteractionValidator.createFor(spec.getPath()).withWhitelist(whitelist).build();
+			validatorLoadFailed = false;
+		} catch (Exception e) {
+			logger.warn("Failed to create OpenAPI validator. Test case validation will be skipped. Error: {}", e.getMessage());
+			validator = null;
+			validatorLoadFailed = true;
+		}
 	}
 	
 	
@@ -47,6 +59,10 @@ public class OASAPIValidator {
 		
 		return validator;
 		
+	}
+	
+	public static boolean isValidatorLoadFailed() {
+		return validatorLoadFailed;
 	}
 	
 }
