@@ -1,0 +1,80 @@
+{
+  "generatedAt" : "2026-01-16T17:56:14",
+  "allureResultsDir" : "target/allure-results/trainticket",
+  "totalKnownFaults" : 11,
+  "totalDetectedFaults" : 5,
+  "uniqueFaultTypesDetected" : 1,
+  "detectionRate" : "9.1%",
+  "detectedFaults" : [ {
+    "faultName" : "INVALID_ORDER_ID_LENGTH_FAULT",
+    "testName" : "attachment:6bbf2715-85f6-4b80-b22b-813fc51ac35d-attachment.html",
+    "testStatus" : "unknown",
+    "message" : "Order deletion rejected: orderId length must be between 10 and 50 characters",
+    "details" : "OrderID: 'manoeuvre', Length: 9"
+  }, {
+    "faultName" : "INVALID_ORDER_ID_LENGTH_FAULT",
+    "testName" : "attachment:86f7e7b2-af95-4c67-893a-fbfa003d7816-attachment.html",
+    "testStatus" : "unknown",
+    "message" : "Order deletion rejected: orderId length must be between 10 and 50 characters",
+    "details" : "OrderID: 'profane', Length: 7"
+  }, {
+    "faultName" : "INVALID_ORDER_ID_LENGTH_FAULT",
+    "testName" : "attachment:a43adcab-9f23-49af-8781-f59c2594e522-attachment.html",
+    "testStatus" : "unknown",
+    "message" : "Order deletion rejected: orderId length must be between 10 and 50 characters",
+    "details" : "OrderID: 'bring', Length: 5"
+  }, {
+    "faultName" : "INVALID_ORDER_ID_LENGTH_FAULT",
+    "testName" : "attachment:ac5e0300-1180-4786-aca9-871bb185952b-attachment.html",
+    "testStatus" : "unknown",
+    "message" : "Order deletion rejected: orderId length must be between 10 and 50 characters",
+    "details" : "OrderID: 'splotch', Length: 7"
+  }, {
+    "faultName" : "INVALID_ORDER_ID_LENGTH_FAULT",
+    "testName" : "attachment:e0ea620a-69a0-4aa3-bbd6-33e1dbae5e96-attachment.html",
+    "testStatus" : "unknown",
+    "message" : "Order deletion rejected: orderId length must be between 10 and 50 characters",
+    "details" : "OrderID: 'schuss', Length: 6"
+  } ],
+  "undetectedFaults" : [ {
+    "faultName" : "INVALID_ROUTE_ID_FAULT",
+    "service" : "ts-admin-basic-info-service",
+    "api" : "POST /api/v1/adminbasicservice/adminbasic/prices"
+  }, {
+    "faultName" : "INVALID_STATION_NAME_LENGTH_FAULT",
+    "service" : "ts-admin-route-service",
+    "api" : "POST /api/v1/adminrouteservice/adminroute"
+  }, {
+    "faultName" : "INVALID_CONTACTS_NAME_FAULT",
+    "service" : "ts-admin-order-service",
+    "api" : "POST /api/v1/adminorderservice/adminorder, PUT /api/v1/adminorderservice/adminorder"
+  }, {
+    "faultName" : "INVALID_STATION_NAME_FAULT",
+    "service" : "ts-travel-plan-service",
+    "api" : "POST /api/v1/travelplanservice/travelPlan/minStation"
+  }, {
+    "faultName" : "INVALID_TRIP_ID_FORMAT_FAULT",
+    "service" : "ts-admin-travel-service",
+    "api" : "DELETE /api/v1/admintravelservice/admintravel/{tripId}"
+  }, {
+    "faultName" : "INVALID_STATION_LENGTH_FAULT",
+    "service" : "ts-travel-plan-service",
+    "api" : "POST /api/v1/travelplanservice/travelPlan/minStation"
+  }, {
+    "faultName" : "INVALID_PRICE_RATE_FAULT",
+    "service" : "ts-admin-basic-info-service",
+    "api" : "POST /api/v1/adminbasicservice/adminbasic/prices"
+  }, {
+    "faultName" : "INVALID_TRIP_ID_LENGTH_FAULT",
+    "service" : "ts-admin-travel-service",
+    "api" : "DELETE /api/v1/admintravelservice/admintravel/{tripId}"
+  }, {
+    "faultName" : "INVALID_SEAT_NUMBER_FAULT",
+    "service" : "ts-admin-order-service",
+    "api" : "POST /api/v1/adminorderservice/adminorder, PUT /api/v1/adminorderservice/adminorder"
+  }, {
+    "faultName" : "INSUFFICIENT_STATIONS_FAULT",
+    "service" : "ts-admin-route-service",
+    "api" : "POST /api/v1/adminrouteservice/adminroute"
+  } ]
+}

@@ -1,0 +1,84 @@
+{
+  "generatedAt" : "2026-01-16T18:01:03",
+  "allureResultsDir" : "target/allure-results/trainticket",
+  "totalKnownFaults" : 10,
+  "totalDetectedFaults" : 3,
+  "uniqueFaultTypesDetected" : 1,
+  "detectionRate" : "10.0%",
+  "detectedFaults" : [ {
+    "faultName" : "INVALID_ORDER_ID_LENGTH_FAULT",
+    "testName" : "attachment:58aaf64c-e5fd-461b-94a2-12217bbc0403-attachment.html",
+    "testStatus" : "unknown",
+    "message" : "Order deletion rejected: orderId length must be between 10 and 50 characters",
+    "details" : "OrderID: 'respite', Length: 7"
+  }, {
+    "faultName" : "INVALID_ORDER_ID_LENGTH_FAULT",
+    "testName" : "attachment:b2ceebcb-b94e-40c0-98f5-cad615ca91c2-attachment.html",
+    "testStatus" : "unknown",
+    "message" : "Order deletion rejected: orderId length must be between 10 and 50 characters",
+    "details" : "OrderID: 'conflate', Length: 8"
+  }, {
+    "faultName" : "INVALID_ORDER_ID_LENGTH_FAULT",
+    "testName" : "attachment:f6fc63a0-905e-4801-a0c4-ce92ae5ff228-attachment.html",
+    "testStatus" : "unknown",
+    "message" : "Order deletion rejected: orderId length must be between 10 and 50 characters",
+    "details" : "OrderID: 'clear-cut', Length: 9"
+  } ],
+  "undetectedFaults" : [ {
+    "faultName" : "INVALID_ROUTE_ID_FAULT",
+    "service" : "ts-admin-basic-info-service",
+    "api" : "POST /api/v1/adminbasicservice/adminbasic/prices"
+  }, {
+    "faultName" : "INVALID_STATION_NAME_LENGTH_FAULT",
+    "service" : "ts-admin-route-service",
+    "api" : "POST /api/v1/adminrouteservice/adminroute"
+  }, {
+    "faultName" : "INVALID_CONTACTS_NAME_FAULT",
+    "service" : "ts-admin-order-service",
+    "api" : "POST /api/v1/adminorderservice/adminorder, PUT /api/v1/adminorderservice/adminorder"
+  }, {
+    "faultName" : "INVALID_STATION_NAME_FAULT",
+    "service" : "ts-travel-plan-service",
+    "api" : "POST /api/v1/travelplanservice/travelPlan/minStation"
+  }, {
+    "faultName" : "INVALID_TRIP_ID_FORMAT_FAULT",
+    "service" : "ts-admin-travel-service",
+    "api" : "DELETE /api/v1/admintravelservice/admintravel/{tripId}"
+  }, {
+    "faultName" : "INVALID_STATION_LENGTH_FAULT",
+    "service" : "ts-travel-plan-service",
+    "api" : "POST /api/v1/travelplanservice/travelPlan/minStation"
+  }, {
+    "faultName" : "INVALID_PRICE_RATE_FAULT",
+    "service" : "ts-admin-basic-info-service",
+    "api" : "POST /api/v1/adminbasicservice/adminbasic/prices"
+  }, {
+    "faultName" : "INVALID_TRIP_ID_LENGTH_FAULT",
+    "service" : "ts-admin-travel-service",
+    "api" : "DELETE /api/v1/admintravelservice/admintravel/{tripId}"
+  }, {
+    "faultName" : "INVALID_SEAT_NUMBER_FAULT",
+    "service" : "ts-admin-order-service",
+    "api" : "POST /api/v1/adminorderservice/adminorder, PUT /api/v1/adminorderservice/adminorder"
+  }, {
+    "faultName" : "INSUFFICIENT_STATIONS_FAULT",
+    "service" : "ts-admin-route-service",
+    "api" : "POST /api/v1/adminrouteservice/adminroute"
+  } ],
+  "newlyDiscoveredFaults" : [ {
+    "faultName" : "INVALID_ORDER_ID_LENGTH_FAULT",
+    "testName" : "attachment:58aaf64c-e5fd-461b-94a2-12217bbc0403-attachment.html",
+    "message" : "Order deletion rejected: orderId length must be between 10 and 50 characters",
+    "details" : "OrderID: 'respite', Length: 7"
+  }, {
+    "faultName" : "INVALID_ORDER_ID_LENGTH_FAULT",
+    "testName" : "attachment:b2ceebcb-b94e-40c0-98f5-cad615ca91c2-attachment.html",
+    "message" : "Order deletion rejected: orderId length must be between 10 and 50 characters",
+    "details" : "OrderID: 'conflate', Length: 8"
+  }, {
+    "faultName" : "INVALID_ORDER_ID_LENGTH_FAULT",
+    "testName" : "attachment:f6fc63a0-905e-4801-a0c4-ce92ae5ff228-attachment.html",
+    "message" : "Order deletion rejected: orderId length must be between 10 and 50 characters",
+    "details" : "OrderID: 'clear-cut', Length: 9"
+  } ]
+}

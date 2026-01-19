@@ -1,0 +1,57 @@
+================================================================================
+INJECTED FAULT DETECTION REPORT
+================================================================================
+Generated: 2026-01-16 17:47:55
+Allure Results Directory: target/allure-results/trainticket
+
+--------------------------------------------------------------------------------
+SUMMARY
+--------------------------------------------------------------------------------
+Total Known Injected Faults: 10
+Total Detected Faults: 0
+
+Unique Fault Types Detected: 0 / 10
+
+--------------------------------------------------------------------------------
+DETECTED FAULTS
+--------------------------------------------------------------------------------
+No injected faults were detected in this test run.
+
+--------------------------------------------------------------------------------
+UNDETECTED FAULTS
+--------------------------------------------------------------------------------
+The following 10 faults were NOT detected:
+  - INVALID_ROUTE_ID_FAULT
+    Service: ts-admin-basic-info-service
+    API: POST /api/v1/adminbasicservice/adminbasic/prices
+  - INVALID_STATION_NAME_LENGTH_FAULT
+    Service: ts-admin-route-service
+    API: POST /api/v1/adminrouteservice/adminroute
+  - INVALID_CONTACTS_NAME_FAULT
+    Service: ts-admin-order-service
+    API: POST /api/v1/adminorderservice/adminorder, PUT /api/v1/adminorderservice/adminorder
+  - INVALID_STATION_NAME_FAULT
+    Service: ts-travel-plan-service
+    API: POST /api/v1/travelplanservice/travelPlan/minStation
+  - INVALID_TRIP_ID_FORMAT_FAULT
+    Service: ts-admin-travel-service
+    API: DELETE /api/v1/admintravelservice/admintravel/{tripId}
+  - INVALID_STATION_LENGTH_FAULT
+    Service: ts-travel-plan-service
+    API: POST /api/v1/travelplanservice/travelPlan/minStation
+  - INVALID_PRICE_RATE_FAULT
+    Service: ts-admin-basic-info-service
+    API: POST /api/v1/adminbasicservice/adminbasic/prices
+  - INVALID_TRIP_ID_LENGTH_FAULT
+    Service: ts-admin-travel-service
+    API: DELETE /api/v1/admintravelservice/admintravel/{tripId}
+  - INVALID_SEAT_NUMBER_FAULT
+    Service: ts-admin-order-service
+    API: POST /api/v1/adminorderservice/adminorder, PUT /api/v1/adminorderservice/adminorder
+  - INSUFFICIENT_STATIONS_FAULT
+    Service: ts-admin-route-service
+    API: POST /api/v1/adminrouteservice/adminroute
+
+================================================================================
+END OF REPORT
+================================================================================

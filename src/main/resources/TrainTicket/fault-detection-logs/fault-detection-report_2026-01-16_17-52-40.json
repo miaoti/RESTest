@@ -1,0 +1,54 @@
+{
+  "generatedAt" : "2026-01-16T17:52:40",
+  "allureResultsDir" : "target/allure-results/trainticket",
+  "totalKnownFaults" : 11,
+  "totalDetectedFaults" : 0,
+  "uniqueFaultTypesDetected" : 0,
+  "detectionRate" : "0.0%",
+  "detectedFaults" : [ ],
+  "undetectedFaults" : [ {
+    "faultName" : "INVALID_ROUTE_ID_FAULT",
+    "service" : "ts-admin-basic-info-service",
+    "api" : "POST /api/v1/adminbasicservice/adminbasic/prices"
+  }, {
+    "faultName" : "INVALID_STATION_NAME_LENGTH_FAULT",
+    "service" : "ts-admin-route-service",
+    "api" : "POST /api/v1/adminrouteservice/adminroute"
+  }, {
+    "faultName" : "INVALID_CONTACTS_NAME_FAULT",
+    "service" : "ts-admin-order-service",
+    "api" : "POST /api/v1/adminorderservice/adminorder, PUT /api/v1/adminorderservice/adminorder"
+  }, {
+    "faultName" : "INVALID_STATION_NAME_FAULT",
+    "service" : "ts-travel-plan-service",
+    "api" : "POST /api/v1/travelplanservice/travelPlan/minStation"
+  }, {
+    "faultName" : "INVALID_TRIP_ID_FORMAT_FAULT",
+    "service" : "ts-admin-travel-service",
+    "api" : "DELETE /api/v1/admintravelservice/admintravel/{tripId}"
+  }, {
+    "faultName" : "INVALID_ORDER_ID_LENGTH_FAULT",
+    "service" : "ts-order-service",
+    "api" : "DELETE /api/v1/orderservice/order/{orderId}"
+  }, {
+    "faultName" : "INVALID_STATION_LENGTH_FAULT",
+    "service" : "ts-travel-plan-service",
+    "api" : "POST /api/v1/travelplanservice/travelPlan/minStation"
+  }, {
+    "faultName" : "INVALID_PRICE_RATE_FAULT",
+    "service" : "ts-admin-basic-info-service",
+    "api" : "POST /api/v1/adminbasicservice/adminbasic/prices"
+  }, {
+    "faultName" : "INVALID_TRIP_ID_LENGTH_FAULT",
+    "service" : "ts-admin-travel-service",
+    "api" : "DELETE /api/v1/admintravelservice/admintravel/{tripId}"
+  }, {
+    "faultName" : "INVALID_SEAT_NUMBER_FAULT",
+    "service" : "ts-admin-order-service",
+    "api" : "POST /api/v1/adminorderservice/adminorder, PUT /api/v1/adminorderservice/adminorder"
+  }, {
+    "faultName" : "INSUFFICIENT_STATIONS_FAULT",
+    "service" : "ts-admin-route-service",
+    "api" : "POST /api/v1/adminrouteservice/adminroute"
+  } ]
+}

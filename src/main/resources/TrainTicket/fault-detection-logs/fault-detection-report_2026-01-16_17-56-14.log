@@ -1,0 +1,96 @@
+================================================================================
+INJECTED FAULT DETECTION REPORT
+================================================================================
+Generated: 2026-01-16 17:56:14
+Allure Results Directory: target/allure-results/trainticket
+
+--------------------------------------------------------------------------------
+SUMMARY
+--------------------------------------------------------------------------------
+Total Known Injected Faults: 11
+Total Detected Faults: 5
+
+Unique Fault Types Detected: 1 / 11
+
+--------------------------------------------------------------------------------
+DETECTED FAULTS
+--------------------------------------------------------------------------------
+
+1. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:6bbf2715-85f6-4b80-b22b-813fc51ac35d-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'manoeuvre', Length: 9
+   Service: ts-order-service
+   API: DELETE /api/v1/orderservice/order/{orderId}
+
+2. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:86f7e7b2-af95-4c67-893a-fbfa003d7816-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'profane', Length: 7
+   Service: ts-order-service
+   API: DELETE /api/v1/orderservice/order/{orderId}
+
+3. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:a43adcab-9f23-49af-8781-f59c2594e522-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'bring', Length: 5
+   Service: ts-order-service
+   API: DELETE /api/v1/orderservice/order/{orderId}
+
+4. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:ac5e0300-1180-4786-aca9-871bb185952b-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'splotch', Length: 7
+   Service: ts-order-service
+   API: DELETE /api/v1/orderservice/order/{orderId}
+
+5. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:e0ea620a-69a0-4aa3-bbd6-33e1dbae5e96-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'schuss', Length: 6
+   Service: ts-order-service
+   API: DELETE /api/v1/orderservice/order/{orderId}
+
+--------------------------------------------------------------------------------
+UNDETECTED FAULTS
+--------------------------------------------------------------------------------
+The following 10 faults were NOT detected:
+  - INVALID_ROUTE_ID_FAULT
+    Service: ts-admin-basic-info-service
+    API: POST /api/v1/adminbasicservice/adminbasic/prices
+  - INVALID_STATION_NAME_LENGTH_FAULT
+    Service: ts-admin-route-service
+    API: POST /api/v1/adminrouteservice/adminroute
+  - INVALID_CONTACTS_NAME_FAULT
+    Service: ts-admin-order-service
+    API: POST /api/v1/adminorderservice/adminorder, PUT /api/v1/adminorderservice/adminorder
+  - INVALID_STATION_NAME_FAULT
+    Service: ts-travel-plan-service
+    API: POST /api/v1/travelplanservice/travelPlan/minStation
+  - INVALID_TRIP_ID_FORMAT_FAULT
+    Service: ts-admin-travel-service
+    API: DELETE /api/v1/admintravelservice/admintravel/{tripId}
+  - INVALID_STATION_LENGTH_FAULT
+    Service: ts-travel-plan-service
+    API: POST /api/v1/travelplanservice/travelPlan/minStation
+  - INVALID_PRICE_RATE_FAULT
+    Service: ts-admin-basic-info-service
+    API: POST /api/v1/adminbasicservice/adminbasic/prices
+  - INVALID_TRIP_ID_LENGTH_FAULT
+    Service: ts-admin-travel-service
+    API: DELETE /api/v1/admintravelservice/admintravel/{tripId}
+  - INVALID_SEAT_NUMBER_FAULT
+    Service: ts-admin-order-service
+    API: POST /api/v1/adminorderservice/adminorder, PUT /api/v1/adminorderservice/adminorder
+  - INSUFFICIENT_STATIONS_FAULT
+    Service: ts-admin-route-service
+    API: POST /api/v1/adminrouteservice/adminroute
+
+================================================================================
+END OF REPORT
+================================================================================

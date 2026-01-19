@@ -1,0 +1,514 @@
+================================================================================
+INJECTED FAULT DETECTION REPORT
+================================================================================
+Generated: 2026-01-16 18:42:36
+Allure Results Directory: target/allure-results/trainticket
+
+--------------------------------------------------------------------------------
+SUMMARY
+--------------------------------------------------------------------------------
+Total Known Injected Faults: 10
+Total Detected Faults: 51
+
+Unique Fault Types Detected: 2 / 10
+
+--------------------------------------------------------------------------------
+DETECTED FAULTS
+--------------------------------------------------------------------------------
+
+1. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:0575b445-b91d-4fae-a8b5-c8d841e5e217-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'inapt', Length: 5
+
+2. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:0cb8fbd4-20b8-4997-a7c6-a7de0486e4bc-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'nee', Length: 3
+
+3. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:0cd584b3-cb78-4938-a6fa-36fa06f76ec9-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'unshaved', Length: 8
+
+4. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:1910a847-8cdd-4eca-be0d-310137583d0b-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'ovarian', Length: 7
+
+5. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:1c5cfa8a-c72e-490e-b360-f4240f387d86-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'exoteric', Length: 8
+
+6. INVALID_TRIP_ID_LENGTH_FAULT
+   Test: attachment:1e0f5aa5-b370-4a44-8adf-3e8298e53ebd-attachment.html
+   Status: unknown
+   Message: Trip deletion rejected: tripId length must be between 4 and 20 characters
+   Details: TripID: 'mix', Length: 3
+   Service: ts-admin-travel-service
+   API: DELETE /api/v1/admintravelservice/admintravel/{tripId}
+
+7. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:30ba2408-b4c4-4da6-b403-7dedfe9bf57c-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'open-eyed', Length: 9
+
+8. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:34e28489-34d7-4203-8907-d1d8bb063cbd-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'eristic', Length: 7
+
+9. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:3c24d956-8af8-4ab8-889f-0efcd0cbd88a-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'mortified', Length: 9
+
+10. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:415caf01-b9fe-4786-a0b2-b607e0fe6cc4-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'located', Length: 7
+
+11. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:4202e29a-2e22-46b6-bd02-6f3d7b1ad315-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'morbid', Length: 6
+
+12. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:4d71483e-ebac-4773-bdcf-ba4641996250-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'formless', Length: 8
+
+13. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:505bbc2f-b0c4-40ce-b015-c5bd01e1b039-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'warm', Length: 4
+
+14. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:70fe8687-a1a2-4538-9928-cb01e334a95f-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'unmapped', Length: 8
+
+15. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:7535802a-f4b9-4689-bf8d-3acaedfc46c7-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'velar', Length: 5
+
+16. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:7d42aba1-6019-4d80-aa16-60d8b9f99f43-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'inside', Length: 6
+
+17. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:7e3b4e71-f87d-45d1-8bae-bcc992d7cb5a-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'atlantic', Length: 8
+
+18. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:8341c957-4d2c-46ab-ac10-51b6e5ec3825-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'based', Length: 5
+
+19. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:8b42eec6-2680-4ffc-9a6f-9bff312ac42a-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'hepatic', Length: 7
+
+20. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:8fa6c6f4-d08e-4cb0-91ee-6942f76a7471-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'sumptuous', Length: 9
+
+21. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:8fde7914-f8b2-42af-b0f2-a1990701fecd-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'tops', Length: 4
+
+22. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:92f0b5a1-1afc-44e0-95fc-11886cc81092-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'wondrous', Length: 8
+
+23. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:93f4a482-8b0b-49ba-ac17-2d705ebc7dfc-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'milkless', Length: 8
+
+24. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:950e8b9b-8894-49db-a588-01b9c346d2b8-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'pillaged', Length: 8
+
+25. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:9652c3dd-8752-4884-a72a-dc7baef2d6d1-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'cosmic', Length: 6
+
+26. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:967966e5-264d-4dcf-85b7-0568ad0953d9-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'wholemeal', Length: 9
+
+27. INVALID_TRIP_ID_LENGTH_FAULT
+   Test: attachment:973f3a30-b11e-4e88-9ce7-e839184dc284-attachment.html
+   Status: unknown
+   Message: Trip deletion rejected: tripId length must be between 4 and 20 characters
+   Details: TripID: 'age', Length: 3
+   Service: ts-admin-travel-service
+   API: DELETE /api/v1/admintravelservice/admintravel/{tripId}
+
+28. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:9dc5b810-1617-42f0-9520-a76b17a8ec6e-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'gratified', Length: 9
+
+29. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:9ea1c415-698f-4676-875d-3ae74550fd54-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'thespian', Length: 8
+
+30. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:aa8701b0-bd0c-47e5-921b-03a05f349dc0-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'split', Length: 5
+
+31. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:aaeb253f-760c-4316-adb1-eea5275f8ba5-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'punitive', Length: 8
+
+32. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:ade51122-ac2d-4a1a-a4f4-35eae7c57329-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'conserved', Length: 9
+
+33. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:affca4fd-edc2-47ca-9b48-ded1f430c375-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'arched', Length: 6
+
+34. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:b3d68e22-63e4-426b-a077-20a8478c211d-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'ptolemaic', Length: 9
+
+35. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:b3e442ca-14e7-4c35-b260-0026ac67bf89-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'placating', Length: 9
+
+36. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:b7076b79-8a47-498d-9fda-8320e2c4d020-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'emulous', Length: 7
+
+37. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:c461c5db-2d47-48d4-8fb6-bea6656ac023-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'chaotic', Length: 7
+
+38. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:c4e1ae46-74eb-4064-8793-b438d167ddf2-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'fanned', Length: 6
+
+39. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:cb5c7042-0630-4bea-8c1b-c3d5af2c74c7-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'clear-cut', Length: 9
+
+40. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:d0d46146-4fbc-426f-bb02-672b0a32c2b5-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'luxe', Length: 4
+
+41. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:d70acdfb-baec-4bf7-99a5-6a4be1eac6d2-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'concerted', Length: 9
+
+42. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:d7271b7d-1ec4-4f7f-8619-bb43c1ff1761-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'visaged', Length: 7
+
+43. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:dd8bfa91-5754-4d24-94a3-da9164fac210-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'sparkly', Length: 7
+
+44. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:e0cf341c-3fa9-44c9-aef7-717c0bcb16ea-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'distinct', Length: 8
+
+45. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:eacb77fc-6887-47d0-a398-432c3abab248-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'aimless', Length: 7
+
+46. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:ec29e17c-3cb8-4354-8347-7620d2fb0d64-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'enzymatic', Length: 9
+
+47. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:f11c03b4-b629-4a09-b22c-35313af98502-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'fatheaded', Length: 9
+
+48. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:f1b3a474-7996-4806-b9ca-d6e9df6c4824-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'katari', Length: 6
+
+49. INVALID_TRIP_ID_LENGTH_FAULT
+   Test: attachment:f4667bb2-6ed3-42f7-be75-61a691a6931b-attachment.html
+   Status: unknown
+   Message: Trip deletion rejected: tripId length must be between 4 and 20 characters
+   Details: TripID: 'ham', Length: 3
+   Service: ts-admin-travel-service
+   API: DELETE /api/v1/admintravelservice/admintravel/{tripId}
+
+50. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:f6e5aa04-975c-4491-af17-745bf17e1cab-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'roving', Length: 6
+
+51. INVALID_ORDER_ID_LENGTH_FAULT
+   Test: attachment:fdce41eb-72e9-4308-9176-e39fa815d574-attachment.html
+   Status: unknown
+   Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+   Details: OrderID: 'self-sown', Length: 9
+
+--------------------------------------------------------------------------------
+UNDETECTED FAULTS (from known list)
+--------------------------------------------------------------------------------
+The following 9 faults were NOT detected:
+  - INVALID_ROUTE_ID_FAULT
+    Service: ts-admin-basic-info-service
+    API: POST /api/v1/adminbasicservice/adminbasic/prices
+  - INVALID_STATION_NAME_LENGTH_FAULT
+    Service: ts-admin-route-service
+    API: POST /api/v1/adminrouteservice/adminroute
+  - INVALID_CONTACTS_NAME_FAULT
+    Service: ts-admin-order-service
+    API: POST /api/v1/adminorderservice/adminorder, PUT /api/v1/adminorderservice/adminorder
+  - INVALID_STATION_NAME_FAULT
+    Service: ts-travel-plan-service
+    API: POST /api/v1/travelplanservice/travelPlan/minStation
+  - INVALID_TRIP_ID_FORMAT_FAULT
+    Service: ts-admin-travel-service
+    API: DELETE /api/v1/admintravelservice/admintravel/{tripId}
+  - INVALID_STATION_LENGTH_FAULT
+    Service: ts-travel-plan-service
+    API: POST /api/v1/travelplanservice/travelPlan/minStation
+  - INVALID_PRICE_RATE_FAULT
+    Service: ts-admin-basic-info-service
+    API: POST /api/v1/adminbasicservice/adminbasic/prices
+  - INVALID_SEAT_NUMBER_FAULT
+    Service: ts-admin-order-service
+    API: POST /api/v1/adminorderservice/adminorder, PUT /api/v1/adminorderservice/adminorder
+  - INSUFFICIENT_STATIONS_FAULT
+    Service: ts-admin-route-service
+    API: POST /api/v1/adminrouteservice/adminroute
+
+--------------------------------------------------------------------------------
+NEWLY DISCOVERED FAULTS (not in known list)
+--------------------------------------------------------------------------------
+The following 48 faults are NEW (not in known list):
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:0575b445-b91d-4fae-a8b5-c8d841e5e217-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:0cb8fbd4-20b8-4997-a7c6-a7de0486e4bc-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:0cd584b3-cb78-4938-a6fa-36fa06f76ec9-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:1910a847-8cdd-4eca-be0d-310137583d0b-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:1c5cfa8a-c72e-490e-b360-f4240f387d86-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:30ba2408-b4c4-4da6-b403-7dedfe9bf57c-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:34e28489-34d7-4203-8907-d1d8bb063cbd-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:3c24d956-8af8-4ab8-889f-0efcd0cbd88a-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:415caf01-b9fe-4786-a0b2-b607e0fe6cc4-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:4202e29a-2e22-46b6-bd02-6f3d7b1ad315-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:4d71483e-ebac-4773-bdcf-ba4641996250-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:505bbc2f-b0c4-40ce-b015-c5bd01e1b039-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:70fe8687-a1a2-4538-9928-cb01e334a95f-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:7535802a-f4b9-4689-bf8d-3acaedfc46c7-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:7d42aba1-6019-4d80-aa16-60d8b9f99f43-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:7e3b4e71-f87d-45d1-8bae-bcc992d7cb5a-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:8341c957-4d2c-46ab-ac10-51b6e5ec3825-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:8b42eec6-2680-4ffc-9a6f-9bff312ac42a-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:8fa6c6f4-d08e-4cb0-91ee-6942f76a7471-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:8fde7914-f8b2-42af-b0f2-a1990701fecd-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:92f0b5a1-1afc-44e0-95fc-11886cc81092-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:93f4a482-8b0b-49ba-ac17-2d705ebc7dfc-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:950e8b9b-8894-49db-a588-01b9c346d2b8-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:9652c3dd-8752-4884-a72a-dc7baef2d6d1-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:967966e5-264d-4dcf-85b7-0568ad0953d9-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:9dc5b810-1617-42f0-9520-a76b17a8ec6e-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:9ea1c415-698f-4676-875d-3ae74550fd54-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:aa8701b0-bd0c-47e5-921b-03a05f349dc0-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:aaeb253f-760c-4316-adb1-eea5275f8ba5-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:ade51122-ac2d-4a1a-a4f4-35eae7c57329-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:affca4fd-edc2-47ca-9b48-ded1f430c375-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:b3d68e22-63e4-426b-a077-20a8478c211d-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:b3e442ca-14e7-4c35-b260-0026ac67bf89-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:b7076b79-8a47-498d-9fda-8320e2c4d020-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:c461c5db-2d47-48d4-8fb6-bea6656ac023-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:c4e1ae46-74eb-4064-8793-b438d167ddf2-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:cb5c7042-0630-4bea-8c1b-c3d5af2c74c7-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:d0d46146-4fbc-426f-bb02-672b0a32c2b5-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:d70acdfb-baec-4bf7-99a5-6a4be1eac6d2-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:d7271b7d-1ec4-4f7f-8619-bb43c1ff1761-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:dd8bfa91-5754-4d24-94a3-da9164fac210-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:e0cf341c-3fa9-44c9-aef7-717c0bcb16ea-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:eacb77fc-6887-47d0-a398-432c3abab248-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:ec29e17c-3cb8-4354-8347-7620d2fb0d64-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:f11c03b4-b629-4a09-b22c-35313af98502-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:f1b3a474-7996-4806-b9ca-d6e9df6c4824-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:f6e5aa04-975c-4491-af17-745bf17e1cab-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+  - INVALID_ORDER_ID_LENGTH_FAULT
+    Test: attachment:fdce41eb-72e9-4308-9176-e39fa815d574-attachment.html
+    Message: Order deletion rejected: orderId length must be between 10 and 50 characters
+
+================================================================================
+END OF REPORT
+================================================================================
